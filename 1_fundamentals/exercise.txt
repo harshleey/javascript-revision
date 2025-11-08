@@ -1,0 +1,267 @@
+Section 1: Variables & Scopes (1–7)
+1. What is the output of the following code?
+
+var x = 10;
+let y = 20;
+{
+  var x = 30;
+  let y = 40;
+  console.log(x, y);
+}
+console.log(x, y);
+
+ANS: 10, 20; 30, 40
+CORRECTION: 30, 40; 30, 20;. This is overwritten because {} is a block scope not a function scope. 
+
+
+2. What will happen when you try to reassign a const variable?
+A) It changes value
+B) It throws an error *
+C) It silently fails
+D) It converts to let
+
+3. What is the scope of variables declared with var inside a function?
+A) Block scope *
+B) Global scope
+C) Function scope +
+D) Local to the block
+
+4. What is the output of:
+let a = 5;
+if (true) {
+  let a = 10;
+}
+console.log(a);
+
+ANS: 5
+
+5. Which of these statements is true?
+A) var is block-scoped
+B) let and const are block-scoped * 
+C) let is function-scoped
+D) const is global-scoped
+
+6. What happens if you access a let variable before it’s declared?
+A) Returns undefined *
+B) ReferenceError + 
+C) SyntaxError
+D) Null
+
+7. What is “hoisting” in JavaScript?
+A) Moving functions to the top
+B) Moving declarations to the top *
+C) Both A and B +
+D) Ignored by the interpreter
+
+Section 2: Data Types (8–13)
+8. What is typeof null in JavaScript?
+A) "null"
+B) "object" *
+C) "undefined"
+D) "boolean"
+
+9. Which of the following is not a primitive type?
+A) string
+B) number
+C) object *
+D) boolean 
+
+10. What is the output of:
+let arr = [1, 2, 3];
+console.log(typeof arr);
+ANS: object
+
+
+11. What will this return?
+console.log(typeof NaN);
+ANS: object
+CORRECTION: "number"
+
+
+12. What is the result of:
+let x;
+console.log(x === undefined);
+ANS: true
+
+
+13. Which value is falsy?
+A) "false"
+B) []
+C) 0 *
+D) {}
+
+Section 3: Type Conversion & Coercion (14–19)
+14. What is the result of:
+"5" + 2
+ANS: "52"
+
+15. What is the result of:
+"5" - 2
+ANS: "52"
+ANS: 3
+
+16. What does Boolean("") return?
+A) true *
+B) false +
+C) null
+D) undefined
+
+17. What is Number(true) equal to?
+A) 0
+B) 1 *
+C) NaN
+D) undefined
+
+18. What is the output?
+console.log(2 + true);
+ANS: 3
+
+
+19. What is parseInt("10abc") equal to?
+A) 10 +
+B) NaN
+C) undefined
+D) "10abc"
+
+🔹 Section 4: Operators (20–28)
+20. What is the result of:
+5 == "5"
+ANS: true
+
+
+21. What about:
+5 === "5"
+ANS: false
+
+
+22. What does the expression !false evaluate to?
+A) false
+B) true *
+C) undefined
+D) NaN
+
+23. What is true && false || true equal to?
+A) false
+B) true *
+C) undefined
+D) null
+
+24. What is the value of x?
+let x = 5;
+x += 3;
+ANS: 8
+
+
+25. What will this print?
+let a = 3, b = 4;
+console.log(a > 2 && b < 5);
+ANS: true
+
+
+26. What does typeof (1 + "2") return?
+A) number
+B) string *
+C) NaN
+D) undefined
+
+27. What is the output?
+let x = 10;
+let y = x++ + ++x;
+console.log(y);
+ANS: 22
+
+
+28. What is the ternary operator equivalent of:
+if (age >= 18) {
+  return "Adult";
+} else {
+  return "Minor";
+}
+ANS: age >= 18 ? "Adult" : "Minor";
+CORRECTION: return age >= 18 ? "Adult" : "Minor";
+🔹 Section 5: Conditionals (29–33)
+29. What is the output?
+if ("0") {
+  console.log("True branch");
+} else {
+  console.log("False branch");
+}
+ANS: True branch
+
+
+30. What does switch compare by default?
+A) Value
+B) Type
+C) Both (strict equality ===) +
+D) Loose equality == *
+
+31. What will this output?
+let val = "2";
+switch (val) {
+  case 2: console.log("Number"); break;
+  case "2": console.log("String"); break;
+  default: console.log("Default");
+}
+ANS: Number
+CORRECTION: String
+
+
+32. What is printed?
+let x = 0;
+if (x) console.log("True");
+else console.log("False");
+ANS: False
+
+33. Which statement executes if all if and else if conditions fail?
+A) return
+B) continue
+C) default
+D) else *
+
+
+🔹 Section 6: Loops & Iteration (34–40)
+34. How many times will this run?
+for (let i = 0; i < 3; i++) {
+  console.log(i);
+}
+ANS: 3 times;
+
+35. What is the output?
+let i = 0;
+while (i < 3) {
+  console.log(i);
+  i++;
+}
+ANS: 0, 1, 2;
+
+
+36. What does break do in a loop?
+A) Skips iteration
+B) Ends loop immediately *
+C) Jumps to next iteration
+D) Returns value
+
+37. What does continue do?
+A) Ends loop
+B) Skips current iteration *
+C) Restarts loop
+D) Stops program
+
+38. Which loop iterates over object keys?
+A) for...of
+B) for...in *
+C) while
+D) map()
+
+39. Which loop is best for iterating arrays directly by value?
+A) for...in
+B) for...of *
+C) while
+D) do...while
+
+40. What is the output?
+[1, 2, 3].forEach(num => console.log(num * 2));
+ANS: [2, 4, 6]
+
+
+

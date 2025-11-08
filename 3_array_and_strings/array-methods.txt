@@ -1,0 +1,121 @@
+📚 Array Methods Reference Card
+Part 2: Advanced & Less Common Methods
+🔍 Searching & Finding Methods
+.findIndex() - Find index of first matching element
+const ages = [18, 25, 30, 17];
+const firstAdultIndex = ages.findIndex(age => age >= 18);
+// Returns: 0 (index of first element >= 18)
+
+
+.lastIndexOf() - Find last occurrence
+const nums = [2, 5, 9, 2];
+const lastTwo = nums.lastIndexOf(2);
+// Returns: 3 (last index where 2 appears)
+
+
+.indexOf() - Find first occurrence
+const fruits = ['apple', 'banana', 'orange'];
+const bananaIndex = fruits.indexOf('banana');
+// Returns: 1
+
+
+🔄 Iteration Methods
+.forEach() - Execute function for each element
+const numbers = [1, 2, 3];
+numbers.forEach((num, index) => {
+    console.log(`Index ${index}: ${num}`);
+});
+// Output: 
+// Index 0: 1
+// Index 1: 2  
+// Index 2: 3
+
+
+.entries() - Get index-value pairs
+const arr = ['a', 'b', 'c'];
+for (let [index, value] of arr.entries()) {
+    console.log(index, value);
+}
+// Output:
+// 0 'a'
+// 1 'b'
+// 2 'c'
+
+
+🏗️ Array Creation & Conversion
+.from() - Create array from array-like objects
+// From string
+const fromString = Array.from('hello');
+// Returns: ['h', 'e', 'l', 'l', 'o']
+
+// From Set
+const fromSet = Array.from(new Set([1, 2, 2, 3]));
+// Returns: [1, 2, 3]
+
+// With map function
+const squares = Array.from([1, 2, 3], x => x * x);
+// Returns: [1, 4, 9]
+
+
+.of() - Create array from arguments
+const arr1 = Array.of(1, 2, 3);        // [1, 2, 3]
+const arr2 = Array.of(5);              // [5] (NOT array with length 5!)
+const arr3 = Array.of('a', 'b', 'c');  // ['a', 'b', 'c']
+
+
+✅ Validation & Checking Methods
+.includes() - Check if value exists
+const pets = ['cat', 'dog', 'bird'];
+console.log(pets.includes('dog'));    // true
+console.log(pets.includes('fish'));   // false
+
+
+.isArray() - Check if value is an array
+console.log(Array.isArray([1, 2, 3]));    // true
+console.log(Array.isArray('hello'));      // false
+console.log(Array.isArray({}));           // false
+
+
+🧮 Mathematical Operations
+.flat() - Flatten nested arrays
+const nested = [1, 2, [3, 4, [5, 6]]];
+console.log(nested.flat());       // [1, 2, 3, 4, [5, 6]]
+console.log(nested.flat(2));      // [1, 2, 3, 4, 5, 6]
+
+const arr2 = [1, , 3]; // Sparse array
+console.log(arr2.flat()); // [1, 3] (removes empty slots)
+
+
+.flatMap() - Map then flatten
+const phrases = ["hello world", "good morning"];
+const words = phrases.flatMap(phrase => phrase.split(' '));
+// Returns: ['hello', 'world', 'good', 'morning']
+
+// Equivalent to:
+// phrases.map(phrase => phrase.split(' ')).flat()
+
+
+🔧 Utility Methods
+.fill() - Fill array with static value
+const arr1 = new Array(3).fill(0);        // [0, 0, 0]
+const arr2 = [1, 2, 3, 4].fill(0, 1, 3);  // [1, 0, 0, 4]
+// Syntax: fill(value, startIndex, endIndex)
+
+
+.copyWithin() - Copy portion within array
+const arr = [1, 2, 3, 4, 5];
+arr.copyWithin(0, 3, 5); // Copy elements from index 3-4 to index 0
+// Returns: [4, 5, 3, 4, 5]
+
+
+🎯 String Conversion Methods
+.join() - Convert to string with separator
+const elements = ['Fire', 'Air', 'Water'];
+console.log(elements.join());     // "Fire,Air,Water"
+console.log(elements.join(''));   // "FireAirWater"  
+console.log(elements.join('-'));  // "Fire-Air-Water"
+
+
+.toString() - Convert to string
+const arr = [1, 2, 'a', '1a'];
+console.log(arr.toString()); // "1,2,a,1a"

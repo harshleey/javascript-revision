@@ -1,0 +1,20 @@
+console.log("=== PRIMITIVES ===");
+console.log(typeof undefined);          // "undefined"
+console.log(typeof null);               // "object" ⚠️ QUIRK!
+console.log(typeof true);               // "boolean"
+console.log(typeof false);              // "boolean"
+console.log(typeof 42);                 // "number"
+console.log(typeof 3.14);               // "number"
+console.log(typeof NaN);                // "number" ⚠️ QUIRK!
+console.log(typeof Infinity);           // "number"
+console.log(typeof "hello");            // "string"
+console.log(typeof Symbol("id"));       // "symbol"
+console.log(typeof 123n);               // "bigint"
+
+console.log("=== OBJECTS ===");
+console.log(typeof {});                 // "object"
+console.log(typeof []);                 // "object" ⚠️ QUIRK!
+console.log(typeof function() {});      // "function"
+console.log(typeof new Date());         // "object"
+console.log(typeof /regex/);            // "object"
+console.log(typeof Math);               // "object"

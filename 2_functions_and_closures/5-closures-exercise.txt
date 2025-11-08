@@ -1,0 +1,141 @@
+🌀 5. Closures
+🧠 10 MCQs (No answers yet)
+
+1. What is a closure?
+A) A function that returns another function
+B) A function that remembers variables from outer scope * 
+C) A loop inside a function
+D) A class method
+
+2. Which example shows closure?
+
+function outer() {
+  let count = 0;
+  return function() { count++; return count; }
+}
+
+
+A) Yes *
+B) No
+
+3. What happens when outer finishes executing?
+A) count is destroyed
+B) count remains accessible via inner function *
+C) Memory is freed
+D) Error
+
+4. Which variable can inner access in this code?
+
+function makeAdder(x) {
+  return function(y) {
+    return x + y;
+  };
+}
+
+
+A) y only
+B) x only
+C) both x and y *
+D) none
+
+5. What is the output?
+
+function counter() {
+  let count = 0;
+  return function() { count++; return count; };
+}
+const c1 = counter();
+console.log(c1());
+console.log(c1());
+
+
+A) 1, 1
+B) 1, 2 *
+C) 2, 2
+D) Error
+
+6. What does a closure help with?
+A) Encapsulation
+B) Persistent state
+C) Data privacy
+D) All of the above *
+
+7. What happens here?
+
+function outer() {
+  var num = 10;
+  function inner() {
+    console.log(num);
+  }
+  num = 20;
+  return inner;
+}
+outer()();
+
+
+A) 10
+B) 20 +
+C) Error
+D) undefined
+
+8. Closures are created:
+A) At compile time *
+B) When a function is defined
+C) When a function is executed and returns an inner function +
+D) When function is called recursively
+
+What does this print?
+
+for (var i = 0; i < 3; i++) {
+  setTimeout(() => console.log(i), 0);
+}
+
+
+A) 0 1 2
+B) 3 3 3 *
+C) Error
+D) undefined
+
+How can you fix the above?
+A) Use let instead of var *
+B) Use closure with IIFE
+C) Both +
+D) None
+
+🔥 Question 1: Shopping Cart with Closures
+Build a shopping cart system that:
+
+Uses closures to manage private state
+
+Can add items with name, price, and quantity
+
+Can remove items by name
+
+Can calculate total cost
+
+Can apply discounts
+
+Can list all items
+
+🔥 Question 2: Password Validator with Multiple Criteria
+Build a password validator that:
+
+Uses closures to store validation rules
+
+Validates against multiple criteria
+
+Returns detailed error messages
+
+Can have customizable rule sets
+
+Validation Rules:
+
+At least 8 characters
+
+At least one uppercase letter
+
+At least one lowercase letter
+
+At least one number
+
+At least one special character

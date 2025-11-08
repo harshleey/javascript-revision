@@ -1,0 +1,391 @@
+// 1. Temperature Converter
+function convertTemperature(temperature, symbol) {
+  // Parameters: accepts two arguments/parameter (int and char)
+  // Return: An integer that will either be Fahrenheit or Celsius depending on the input
+  // Example:
+  // - convertTemperature(25, 'C') →
+  // - convertTemperature(77, 'F') → 25
+  // Pseudocode:
+  //   Create a variable temp that hold the result
+  //  If the symbol is C, convert to F and update the variable
+  // If the symbol is F, convert to C and update the variable
+  //   Return the variable at the end
+
+  let temp = 0;
+  if (symbol === "C" && temperature >= 0 && temperature <= 100) {
+    temp = (temperature * 9) / 5 + 32;
+  } else if (symbol === "F" && temperature >= 32 && temperature <= 212) {
+    temp = ((temperature - 32) * 5) / 9;
+  } else {
+    temp = "The value for " + symbol + " is out of range.";
+  }
+
+  return temp;
+}
+
+console.log(convertTemperature(20, "F"));
+
+// CORRECTION FOR CURRENCY CONVERTER
+function temperatureConvert(temperature, scale) {
+  // Pseudocode
+  // 1. Validate input parameters are provided and are correct types
+  // 2. If scale is 'C', convert to F using the formula (c * 9/5) + 32
+  // 3. If scale is 'F', convert to C using the formula (F - 32) * 5/9
+  // 4. If scale is invalid, return error message
+  //   5. Return converted temperature;
+
+  if (typeof temperature !== "number") {
+    return "Error: Temperature value must be a number";
+  }
+
+  if (scale !== "C" && scale !== "F") {
+    // Not C AND Not F = Error
+    return "Error: Scale must be 'C' or 'F'";
+  }
+
+  if (scale === "C") {
+    return (temperature * 9) / 5 + 32;
+  } else {
+    return ((temperature - 32) * 5) / 9;
+  }
+}
+
+console.log(temperatureConvert(25, "C"));
+
+// 2. Simple Counter with Closure
+function closureCounter() {
+  let counter = 0;
+
+  this.increment = function () {
+    return counter++;
+  };
+
+  function decrement() {
+    return counter--;
+  }
+
+  function reset() {
+    counter = 0;
+    return counter;
+  }
+
+  function getCount() {
+    return counter;
+  }
+
+  return increment, decrement, reset, getCount;
+}
+
+const c1 = closureCounter();
+// console.log(c1.increment());
+c1.increment;
+console.log(c1);
+
+// CORRECTION for Simple Counter with Closure
+function createCounter() {
+  // Pseudocode
+  // Create private variable to set and update counter
+  // Create a return variable that wraps all the methods
+  // Create increment method to increase counter by 1 and return it
+  // Create decrement method to reduce counter by 1 and return it
+  // Create the reset method to reset counter to 0 and return it
+  // Create the getCount method to return counter when called
+
+  let counter = 0;
+
+  return {
+    increment: function () {
+      // console.log(counter);
+      return counter++;
+    },
+
+    decrement: function () {
+      return counter--;
+    },
+
+    reset: function () {
+      counter = 0;
+      return counter;
+    },
+
+    getCount: function () {
+      return counter;
+    },
+  };
+}
+
+const count = createCounter();
+count.increment();
+count.increment();
+count.increment();
+count.increment();
+console.log(count.getCount());
+count.decrement();
+console.log(count.getCount());
+count.reset();
+console.log(count.getCount());
+
+function createCounter() {
+    let counter = 0;
+
+    return{
+        increment: () => counter++,
+        decrement: () => counter--,
+        reset: () => counter = 0,
+        getCount: () => counter
+    }
+}
+
+function createCounter() {
+    let counter = 0;
+
+    this.increment = function() {
+        return ++counter;
+    };
+
+    this.decrement = function() {
+        return --counter;
+    }
+
+    this.reset = function() {
+        return counter = 0;
+    }
+
+    this.getCount = function() {
+        return counter;
+    }
+}
+
+// 3. Grade Calculator
+const gradeCalculate = function (grade) {
+  // Pseudocode
+  // 1. Validate input to ensure it is a number and the number is within the range of 1 - 100. log/return an error if it is not
+  // 2. Create an if and else block to check grade range.
+  // 3. If grade is between 91 - 100, return A
+  // 4. If grade is between 81 - 90, return B
+  // 5. If grade is between 71 - 80, return C
+  // 6. If grade is between 61 - 70, return D
+  // 7. If grade is between 51 - 60, return E
+  // 8. The rest is F
+
+  if (typeof grade !== "number") {
+    return "Error: Grade value must be a number";
+  }
+
+  if (grade < 1 || grade > 100) {
+    return "Error: Grade value must be within the range of 1 and 100";
+  }
+
+  if (grade >= 90 && grade <= 100) {
+    return "A";
+  }
+
+  if (grade >= 80 && grade <= 89) {
+    return "B";
+  }
+
+  if (grade >= 70 && grade <= 79) {
+    return "C";
+  }
+
+  if (grade >= 60 && grade <= 69) {
+    return "D";
+  }
+
+  return "F";
+};
+
+console.log(gradeCalculate(59));
+console.log(gradeCalculate(105));
+console.log(gradeCalculate(-90));
+console.log(gradeCalculate(60));
+
+console.log(calculateGrade(89.5));
+function calculateGrade(grade) {
+  if (typeof grade !== "number" || isNaN(grade)) {
+    return "Error: Grade value must be a number";
+  }
+
+  if (grade < 1 || grade > 100) {
+    return "Error: Grade value must be within the range of 1 and 100";
+  }
+
+  if (grade >= 90) return "A";
+  if (grade >= 80) return "B";
+  if (grade >= 70) return "C";
+  if (grade >= 60) return "D";
+  if (grade >= 50) return "E";
+  return "F";
+}
+
+// 4. Array Statistics
+const analyzeArray = function (array) {
+  // Pseudocode
+  // 1. Validate the input to be sure it is an array and ensure the length is greater than 0
+  // 2. Create a variable that holds the value of a function/loop that sums up the array
+  // 3. Create a variable that holds the value of a function/loop that returns the average of an array
+  // 4. Create a variable that holds the value of a function/loop that accepts the maximum value of an array
+  // 5. Create a variable that holds the value of a function/loop that accepts the minimum value of an array
+  // 6. Structure all these variables in an object and return them
+
+  if (!Array.isArray(array)) {
+    return "Error: Data passed is not an array";
+  }
+
+  if (array.length == 0) {
+    return "Error: Length of the array should be greater than zero";
+  }
+
+  let sum = 0;
+  let average = 0;
+  let max = -Infinity;
+  let min = Infinity;
+  let i = 0;
+
+  while (i < array.length) {
+    sum += array[i];
+    i++;
+  }
+
+  average = sum / array.length;
+
+  for (let arr of array) {
+    if (arr < min) {
+      min = arr;
+    }
+
+    if (arr > max) {
+      max = arr;
+    }
+  }
+
+  return { sum, average, max, min };
+};
+
+console.log(analyzeArray([1, 2, 3, 4, 5]));
+
+// CORRECTION
+function arrayAnalyze(array) {
+  // Pseudocode
+  // 1. Validate input is an array
+  // 2. Validate input is not an empty array
+  // 3. Validate all the data in the array is a number
+  // 4. Initialize sum, min, max variables
+  // 5. Loop through the array to calculate all statistics
+  // 6. Calculate average from sum and array length
+  // 7. Return all statistics in the structure of an object
+
+  if (!Array.isArray(array)) {
+    return "Error: Data passed is not an array";
+  }
+
+  if (array.length == 0) {
+    return "Error: Length of the array should be greater than zero";
+  }
+
+  if (
+    !array.every((element) => typeof element === "number" && !isNaN(element))
+  ) {
+    return "Error: All array elements must be numbers";
+  }
+
+  let sum = 0;
+  let max = array[0];
+  let min = array[0];
+
+  for (let arr of array) {
+    sum += arr;
+
+    if (arr < min) {
+      min = arr;
+    }
+
+    if (arr > max) {
+      max = arr;
+    }
+  }
+
+  const average = sum / array.length;
+
+  return {
+    sum,
+    average,
+    max,
+    min,
+  };
+}
+
+console.log(arrayAnalyze([1, 2, 3, 4, 5]));
+// Expected: {sum: 15, average: 3, max: 5, min: 1} ✓
+
+console.log(arrayAnalyze([]));
+// Expected: Error ✓
+
+console.log(arrayAnalyze([1, 2, "hello"]));
+// Expected: Error ✓
+
+console.log(arrayAnalyze([-1, -2, -3]));
+// Expected: {sum: -6, average: -2, max: -1, min: -3} ✓
+
+const analyzeArray = function (array) {
+  if (!Array.isArray(array) || array.length === 0) {
+    return "Error: Invalid input";
+  }
+
+  const sum = array.reduce((acc, num) => acc + num, 0);
+  const average = sum / array.length;
+  const max = Math.max(...array);
+  const min = Math.min(...array);
+
+  return { sum, average, max, min };
+};
+
+// 5. String Reverser
+function stringReverse(data) {
+  // Pseudocode
+  // 1. Validate input is string
+  // 2. Validate input is non-empty string
+  // 3. Initialize reverse variable to hold the reversed string
+  // 4. Loop backwards (end to beginning) through the string using the string length and update the reverse variable on each loop
+  // 5. Return the reverse variable
+
+  if (typeof data !== "string") {
+    return "Error: Data must be a string";
+  }
+
+  if (data.length == 0) {
+    return "Error: Must not be an empty string";
+  }
+
+  let reverse = "";
+
+  for (let i = data.length - 1; i >= 0; i--) {
+    reverse += data.charAt(i);
+  }
+
+  return reverse;
+}
+
+OTHER Methods
+function stringReverse(data) {
+  if (typeof data !== "string" || data.length === 0) {
+    return "Error: Invalid input";
+  }
+  
+  return data.split('').reverse().join('');
+}
+
+function stringReverse(data) {
+  if (typeof data !== "string" || data.length === 0) {
+    return "Error: Invalid input";
+  }
+  
+  if (data.length === 1) return data;
+  return stringReverse(data.slice(1)) + data[0];
+}
+
+console.log(stringReverse("Javascript"));
+console.log(stringReverse("hello")); // "olleh" ✓
+console.log(stringReverse("a")); // "a" ✓
+console.log(stringReverse("")); // Error ✓
+console.log(stringReverse(123));

@@ -1,0 +1,186 @@
+🎯 Test Your Knowledge
+1. What does Object.keys() return?
+A) Array of values 
+B) Array of key-value pairs
+C) Array of keys *
+D) Object with keys
+
+2. How do you create a shallow copy of an object?
+A) Object.clone(obj)
+B) {...obj} *
+C) obj.copy()
+D) JSON.parse(JSON.stringify(obj))
+
+3. What's the main advantage of Map over Object?
+A) Faster iteration
+B) Keys can be any data type +
+C) Smaller memory usage
+D) Built-in sorting *
+
+4. What does this code output?
+
+javascript
+const obj = {a: 1, b: 2};
+const {a, ...rest} = obj;
+console.log(rest);
+A) {a: 1}
+B) {b: 2} *
+C) {a: 1, b: 2}
+D) undefined
+
+5. How do you check if a value exists in a Set?
+A) set.contains(value)
+B) set.has(value)*
+C) set.includes(value)
+D) set.find(value)
+
+6. What's the output?
+
+javascript
+const map = new Map();
+map.set('1', 'one');
+map.set(1, 'number one');
+console.log(map.size);
+A) 1
+B) 2 *
+C) Error
+D) undefined
+
+7. Which method gives you key-value pairs as arrays?
+A) Object.keys()
+B) Object.values()
+C) Object.entries()*
+D) Object.pairs()
+
+8. What does this destructuring do?
+
+javascript
+const user = {name: 'Alice', age: 25};
+const {name: userName} = user;
+A) Creates userName with value "Alice" *
+B) Creates name with value "Alice"
+C) Creates both name and userName
+D) Error
+
+9. How do you remove duplicates from an array?
+A) array.filter()
+B) new Map(array)
+C) new Set(array) *
+D) array.unique()
+
+10. What's the problem with this shallow copy?
+
+javascript
+const original = {data: {count: 1}};
+const copy = {...original};
+copy.data.count = 2;
+A) original.data.count becomes 2 +
+B) copy is not created *
+C) original.data.count remains 1
+D) Error
+
+11. What does Object.entries() return for {x: 1, y: 2}?
+A) ['x', 'y']
+B) [1, 2]
+C) [['x', 1], ['y', 2]] *
+D) {x: 1, y: 2}
+
+12. How do you get the number of entries in a Map?
+A) map.length
+B) map.size *
+C) map.count
+D) Map.size(map)
+
+13. What's the output?
+
+javascript
+const set = new Set([1, 2, 2, 3, 3, 3]);
+console.log(set.size);
+A) 6
+B) 3 *
+C) 1
+D) 0
+
+14. Which creates a deep copy?
+A) {...obj}
+B) Object.assign({}, obj)
+C) structuredClone(obj) *
+D) obj.slice()
+
+15. What does this spread operator do?
+
+javascript
+const obj1 = {a: 1};
+const obj2 = {b: 2};
+const result = {...obj1, ...obj2};
+A) {a: 1, b: 2} *
+B) [{a: 1}, {b: 2}]
+C) {a: 1}
+D) Error
+
+16. How do you loop through Map entries?
+A) for (let key in map)
+B) map.forEach((value, key) => {})
+C) for (let entry of map.entries())
+D) Both B and C *
+
+17. What's the output?
+
+javascript
+const person = {name: 'Bob', age: 30};
+const {age = 25, city = 'Unknown'} = person;
+console.log(city);
+A) 30
+B) 'Unknown' *
+C) undefined
+D) Error
+
+18. How do you convert a Set to an Array?
+A) Array.from(set)
+B) [...set]
+C) set.toArray()
+D) Both A and B *
+
+19. What does this code do?
+
+javascript
+const config = {apiUrl: '...', timeout: 5000};
+function connect({apiUrl, timeout = 3000}) {
+    console.log(timeout);
+}
+connect(config);
+A) 5000 *
+B) 3000
+C) undefined
+D) Error
+
+20. What's the difference between these loops?
+
+javascript
+// Loop A
+for (let key in obj) { console.log(key); }
+
+// Loop B  
+for (let key of Object.keys(obj)) { console.log(key); }
+A) Loop A includes prototype properties *
+B) Loop B is faster
+C) Loop A only works on arrays
+D) No difference
+
+🎪 BONUS CHALLENGE
+21. What does this complex operation produce?
+
+javascript
+const users = [
+    {id: 1, name: 'Alice'},
+    {id: 2, name: 'Bob'}, 
+    {id: 1, name: 'Alice'}
+];
+
+const uniqueUsers = [...new Map(users.map(user => [user.id, user])).values()];
+console.log(uniqueUsers.length);
+A) 1
+B) 2 +
+C) 3 *
+D) Error
+

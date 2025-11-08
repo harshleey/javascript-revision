@@ -1,0 +1,151 @@
+🧩 Objects, Maps & Sets Cheat Sheet
+🔑 Object Looping - 3 Ways
+1. for...in - Loop through keys
+javascript
+const person = {name: "Alice", age: 25, city: "NYC"};
+
+for (let key in person) {
+    console.log(key, person[key]);
+}
+// Output:
+// name Alice
+// age 25  
+// city NYC
+2. Object.keys() - Get all keys as array
+javascript
+const keys = Object.keys(person);
+// ["name", "age", "city"]
+
+keys.forEach(key => {
+    console.log(person[key]);
+});
+3. Object.entries() - Get key-value pairs
+javascript
+const entries = Object.entries(person);
+// [["name", "Alice"], ["age", 25], ["city", "NYC"]]
+
+entries.forEach(([key, value]) => {
+    console.log(`${key}: ${value}`);
+});
+🎯 When to use:
+
+for...in → Simple looping
+
+Object.keys() → Need array of keys
+
+Object.entries() → Need both key and value
+
+🗺️ Map vs Set - Optimized Lookups
+Map - Key-Value pairs (like upgraded Object)
+javascript
+const map = new Map();
+map.set('name', 'Alice');
+map.set('age', 25);
+
+console.log(map.get('name')); // "Alice"
+console.log(map.has('age'));  // true
+console.log(map.size);        // 2
+
+// Keys can be ANY type (objects, functions, etc.)
+const objKey = {id: 1};
+map.set(objKey, 'secret data');
+Set - Unique values only
+javascript
+const set = new Set();
+set.add('apple');
+set.add('banana');
+set.add('apple'); // Duplicate - ignored!
+
+console.log(set.has('apple')); // true
+console.log(set.size);         // 2
+
+// Perfect for removing duplicates from array
+const numbers = [1, 2, 2, 3, 3, 3];
+const unique = [...new Set(numbers)]; // [1, 2, 3]
+🎯 When to use:
+
+Map → Need keys that aren't strings, maintain insertion order
+
+Set → Need unique values, fast existence checks
+
+📋 Object vs Map Comparison
+Feature	Object	Map
+Key types	Only strings/symbols	Any type
+Order	Not guaranteed	Insertion order
+Size	Manual calculation	.size property
+Performance	Faster for simple cases	Better for frequent adds/removes
+🎭 Shallow vs Deep Copy
+Shallow Copy - Copies first level only
+javascript
+const original = {name: "Alice", hobbies: ["reading", "gaming"]};
+
+// Method 1: Spread operator
+const shallow1 = {...original};
+
+// Method 2: Object.assign()
+const shallow2 = Object.assign({}, original);
+
+// PROBLEM: Nested objects are still referenced!
+shallow1.hobbies.push("cooking");
+console.log(original.hobbies); // ["reading", "gaming", "cooking"] 😱
+Deep Copy - Copies everything
+javascript
+// Method 1: JSON (simple objects only)
+const deep1 = JSON.parse(JSON.stringify(original));
+
+// Method 2: Structured cloning (modern)
+const deep2 = structuredClone(original);
+
+// Method 3: Library like Lodash
+// const deep3 = _.cloneDeep(original);
+
+// Now it's truly independent!
+deep1.hobbies.push("swimming");
+console.log(original.hobbies); // ["reading", "gaming"] ✅
+🎯 When to use:
+
+Shallow → Simple objects, no nested structures
+
+Deep → Complex objects with nested arrays/objects
+
+✨ Destructuring & Spread Magic
+Destructuring - Unpack values
+javascript
+const person = {name: "Alice", age: 25, city: "NYC"};
+
+// Extract specific properties
+const {name, age} = person;
+console.log(name); // "Alice"
+console.log(age);  // 25
+
+// Rename variables
+const {name: personName, city: location} = person;
+
+// Function parameters
+function printUser({name, age}) {
+    console.log(`${name} is ${age} years old`);
+}
+Rest/Spread - Pack and unpack
+javascript
+const obj1 = {a: 1, b: 2};
+const obj2 = {c: 3, d: 4};
+
+// Spread - combine objects
+const combined = {...obj1, ...obj2};
+// {a: 1, b: 2, c: 3, d: 4}
+
+// Rest - collect remaining properties
+const {a, ...rest} = combined;
+console.log(a);    // 1
+console.log(rest); // {b: 2, c: 3, d: 4}
+
+💡 Pro Tips
+Use Maps when you need keys that aren't strings
+
+Use Sets to remove duplicates from arrays
+
+Always deep copy if you have nested objects
+
+Destructuring makes code cleaner and more readable
+
+Spread operator is modern and preferred over Object.assign()

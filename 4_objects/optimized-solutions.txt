@@ -1,0 +1,189 @@
+class ShoppingCart {
+  constructor() {
+    this.items = new Map();
+  }
+
+  addItem(productId, quantity = 1) {
+    if (quantity <= 0) return;
+    const currentQty = this.items.get(productId) || 0;
+    this.items.set(productId, currentQty + quantity);
+  }
+
+  removeItem(productId, quantity = 1) {
+    const currentQty = this.items.get(productId) || 0;
+    if (currentQty <= quantity) {
+      this.items.delete(productId);
+    } else {
+      this.items.set(productId, currentQty - quantity);
+    }
+  }
+
+  getTotalItems() {
+    return [...this.items.values()].reduce((sum, qty) => sum + qty, 0);
+  }
+
+  clearCart() {
+    this.items.clear();
+  }
+
+  getCartSummary() {
+    return Object.fromEntries(this.items);
+  }
+}
+
+// Usage
+const cart = new ShoppingCart();
+cart.addItem("prod1", 2);
+cart.addItem("prod2", 1);
+cart.addItem("prod1", 1); // Now prod1 has 3
+console.log(cart.getTotalItems()); // 4
+
+
+SETS
+function addVisitor(email) {
+  // Basic email validation
+  if (!email.includes('@') || !email.includes('.')) {
+    console.log("Invalid email format");
+    return false;
+  }
+  
+  if (visitors.has(email)) {
+    console.log("Email already exists");
+    return false;
+  }
+  
+  visitors.add(email);
+  console.log("Visitor added successfully!");
+  return true;
+}
+
+class VisitorTracker {
+  constructor() {
+    this.visitors = new Set();
+    this.visitDates = new Map(); // Track when each visitor came
+  }
+
+  addVisitor(email, date = new Date()) {
+    if (this.visitors.has(email)) {
+      return false;
+    }
+    this.visitors.add(email);
+    this.visitDates.set(email, date);
+    return true;
+  }
+
+  getUniqueVisitorCount() {
+    return this.visitors.size;
+  }
+
+  getVisitorList() {
+    return [...this.visitors];
+  }
+
+  getVisitorStats() {
+    return {
+      totalVisitors: this.visitors.size,
+      visitorList: this.getVisitorList(),
+      firstVisit: this.visitDates.size > 0 
+        ? Math.min(...this.visitDates.values())
+        : null
+    };
+  }
+}
+
+// Usage
+const tracker = new VisitorTracker();
+tracker.addVisitor("user1@email.com");
+tracker.addVisitor("user2@email.com");
+console.log(tracker.getVisitorStats());
+
+DESTRUCTURING
+function getUserDisplayInfo(user) {
+  const { 
+    personalInfo: { firstName, lastName },
+    contact: { email },
+    preferences: { theme }
+  } = user;
+
+  return `${firstName} ${lastName} (${email}) - ${theme.charAt(0).toUpperCase() + theme.slice(1)} theme`;
+}
+
+function getUserDisplayInfo({ 
+  personalInfo: { firstName, lastName },
+  contact: { email },
+  preferences: { theme }
+}) {
+  return `${firstName} ${lastName} (${email}) - ${theme.charAt(0).toUpperCase() + theme.slice(1)} theme`;
+}
+
+function getUserDisplayInfo(user) {
+  const { 
+    personalInfo: { firstName = 'Unknown', lastName = 'User' },
+    contact: { email = 'no-email@example.com' },
+    preferences: { theme = 'light' }
+  } = user;
+
+  return `${firstName} ${lastName} (${email}) - ${theme.charAt(0).toUpperCase() + theme.slice(1)} theme`;
+}
+
+function UserProfile({ user }) {
+  const { 
+    personalInfo: { firstName, lastName, age },
+    contact: { email, phone },
+    preferences: { theme, language }
+  } = user;
+
+  return {
+    displayName: `${firstName} ${lastName}`,
+    contactInfo: { email, phone },
+    settings: { theme, language },
+    isAdult: age >= 18
+  };
+}
+
+// Usage
+const profile = UserProfile({ user });
+console.log(profile);
+// {
+//   displayName: "John Doe",
+//   contactInfo: { email: "john@example.com", phone: "+1234567890" },
+//   settings: { theme: "dark", language: "en" },
+//   isAdult: true
+// }
+
+
+SPREAD operatorfunction mergeSettings(defaults, user) {
+  return Object.assign({}, defaults, user);
+}
+// Same result, but spread operator is more modern and readable
+
+function advancedGradeAnalysis(students) {
+  const entries = Object.entries(students);
+  const grades = Object.values(students);
+  
+  const average = grades.reduce((sum, grade) => sum + grade, 0) / grades.length;
+  
+  // Sort grades for percentile calculation
+  const sortedGrades = [...grades].sort((a, b) => a - b);
+  
+  return {
+    average: Number(average.toFixed(2)),
+    highest: findStudentByGrade(students, Math.max(...grades)),
+    lowest: findStudentByGrade(students, Math.min(...grades)),
+    median: sortedGrades[Math.floor(sortedGrades.length / 2)],
+    totalStudents: entries.length,
+    gradeDistribution: {
+      A: grades.filter(g => g >= 90).length,
+      B: grades.filter(g => g >= 80 && g < 90).length,
+      C: grades.filter(g => g >= 70 && g < 80).length,
+      F: grades.filter(g => g < 70).length
+    }
+  };
+}
+
+function findStudentByGrade(students, targetGrade) {
+  const entry = Object.entries(students).find(([name, grade]) => grade === targetGrade);
+  return { student: entry[0], grade: entry[1] };
+}
+
+console.log(advancedGradeAnalysis(students));

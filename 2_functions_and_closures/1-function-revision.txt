@@ -1,0 +1,165 @@
+🧠 Comprehensive Review: Core JavaScript Concepts
+📚 1. Hoisting Rules Deep Dive
+Variable Hoisting
+javascript
+// 🎯 VAR - hoisted and initialized with undefined
+console.log(a); // undefined
+var a = 5;
+console.log(a); // 5
+
+// Equivalent to:
+var a;
+console.log(a); // undefined
+a = 5;
+console.log(a); // 5
+
+// 🎯 LET/CONST - hoisted but in Temporal Dead Zone (TDZ)
+// console.log(b); // ReferenceError: Cannot access 'b' before initialization
+let b = 10;
+console.log(b); // 10
+
+// console.log(c); // ReferenceError
+const c = 15;
+console.log(c); // 15
+Function Hoisting
+javascript
+// 🎯 FUNCTION DECLARATIONS - fully hoisted
+sayHello(); // "Hello!" (works)
+
+function sayHello() {
+    console.log("Hello!");
+}
+
+// 🎯 FUNCTION EXPRESSIONS - follow variable hoisting rules
+// console.log(funcExpr); // undefined (var) or ReferenceError (let/const)
+// funcExpr(); // TypeError: funcExpr is not a function
+
+var funcExpr = function() {
+    console.log("Function expression");
+};
+
+📚 2. Named vs Anonymous Expressions
+Anonymous Function Expressions
+
+setTimeout(function() {
+    console.log("Anonymous function");
+}, 1000);
+
+const numbers = [1, 2, 4, 5]
+const doubled = (numbers) => numbers.map(function(n) {
+    return n * 2;
+});
+
+// ❌ Hard to debug in stack traces
+// ❌ Can't reference itself recursively
+
+Named Function Expressions
+javascript
+// ✅ Better stack traces
+// ✅ Can reference itself recursively
+// ✅ Self-documenting code
+
+const factorial = function fact(n) {
+    if (n <= 1) return 1;
+    return n * fact(n-1); // can reference itself
+}
+
+setTimeout(function timerHandler() {
+    console.log("Named function - better stack traces");
+}, 1000);
+
+// ✅ Useful for recursion in callbacks
+document.addEventListener('click', function handleClick(event) {
+    console.log("Clicked!");
+    // handleClick can be referenced here if needed
+});
+
+When to Use Each
+// 🎯 Use NAMED expressions when:
+// 1. You need recursion
+// 2. Better debugging is important
+// 3. Function is complex and needs self-documentation
+
+// 🎯 Use ANONYMOUS expressions when:
+// 1. Simple, one-time callbacks
+// 2. Arrow functions aren't appropriate
+// 3. Code brevity is important
+
+function countdown(n) {
+    if (n <= 0) {
+        console.log("Blast off");
+        return;
+    }
+
+    countdown(n - 1);
+}
+
+📚 4. Recursion Fundamentals
+The Two Essential Parts
+javascript
+// 🎯 1. BASE CASE (stopping condition)
+// 🎯 2. RECURSIVE CASE (calling itself)
+
+// ✅ Proper Recursion Pattern
+function recursiveFunction(input) {
+    // 1. Base Case - STOP condition
+    if (baseCaseCondition) {
+        return baseCaseValue;
+    }
+    
+    // 2. Recursive Case - CALL itself with modified input
+    return recursiveFunction(modifiedInput);
+}
+
+Common Recursion Patterns
+javascript
+// 🎯 PATTERN 1: Countdown
+function countdown(n) {
+    // Base case
+    if (n <= 0) {
+        console.log("Blast off!");
+        return;
+    }
+    
+    // Recursive case
+    console.log(n);
+    countdown(n - 1);
+}
+countdown(5);
+
+// 🎯 PATTERN 2: Factorial
+function factorial(n) {
+    // Base case
+    if (n <= 1) return 1;
+    
+    // Recursive case
+    return n * factorial(n - 1);
+}
+console.log(factorial(5)); // 120
+
+// 🎯 PATTERN 3: Array Sum
+function sumArray(arr) {
+    // Base case
+    if (arr.length === 0) return 0;
+    
+    // Recursive case
+    return arr[0] + sumArray(arr.slice(1));
+}
+console.log(sumArray([1, 2, 3, 4])); // 10
+
+Avoiding Infinite Recursion
+javascript
+// ❌ DANGEROUS - Missing base case
+function infinite(n) {
+    console.log(n);
+    infinite(n + 1); // Never stops!
+}
+
+// ✅ SAFE - Proper base case
+function safeRecursion(n) {
+    // Base case
+    if (n > 10) return;
+    
+    console.log(n);
+    safeRecursion(n + 1);
+}

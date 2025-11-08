@@ -1,0 +1,69 @@
+1. Array Method: Adding an Element
+You have an array let fruits = ['apple', 'banana'];. Which method do you use to add 'orange' to the end of the array?
+a) fruits.pop('orange')
+b) fruits.push('orange') *
+c) fruits.add('orange')
+d) fruits.append('orange')
+
+2. String Method: Getting a Part of a String
+For the string let greeting = "Hello, World!";, how do you get the substring "World"?
+a) greeting.slice(7, 12)
+b) greeting.substring(7, 11)
+c) greeting.substr(7, 5)
+d) All of the above *
+
+3. Array Method: Finding an Element
+You want to check if the array let numbers = [10, 20, 30]; contains the number 20. Which method do you use?
+a) numbers.find(20)
+b) numbers.includes(20) *
+c) numbers.indexOf(20)
+d) numbers.search(20)
+
+4. String Method: Combining Strings
+You have two strings: let str1 = "Good"; and let str2 = "Morning";. How do you combine them into "Good Morning"?
+a) str1.join(str2)
+b) str1 + " " + str2
+c) str1.concat(" ", str2)
+d) Both b and c *
+
+5. Array Method: Removing the First Element
+What does the .shift() method do to an array?
+a) Removes the last element
+b) Adds a new element to the beginning
+c) Removes the first element *
+d) Reverses the order of elements
+
+6. String Method: Getting a Character
+For the string let name = "Alice";, how do you get the character 'l'?
+a) name[2]
+b) name.charAt(2)
+c) name.at(2)
+d) All of the above *
+
+7. Array Method: Determining Length
+What property do you use to find out how many elements are in an array?
+a) .size
+b) .count
+c) .length *
+d) .size()
+
+8. String Method: Converting Case
+You have a string let word = "JavaScript"; and you want to convert it to all uppercase. Which method do you use?
+a) word.toUpper()
+b) word.toUpperCase() *
+c) word.upperCase()
+d) word.capitalize()
+
+9. Array Method: Joining Elements
+You have an array let colors = ['red', 'green', 'blue'];. How do you combine them into the single string "red, green, blue"?
+a) colors.join()
+b) colors.join(', ')
+c) colors.toString()
+d) Both b and c *
+
+10. String Method: Checking the Start
+How would you check if the string let url = "https://www.example.com"; starts with "https"?
+a) url.startsWith("https") *
+b) url.startsWith("http")
+c) url.first("https")
+d) url.indexOf("https") === 0

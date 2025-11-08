@@ -1,0 +1,24 @@
+🧭 What to Review Before Moving On
+
+Hoisting rules — difference between var, let, const, and function declarations.
+
+Named vs anonymous expressions — when and why to use.
+
+Execution context — how the JS engine sets up memory and initializes variables/functions.
+
+Recursion basics — always define a base case.
+
+Would you like me to:
+
+🔹 Give you a short targeted mini-drill (10 MCQs + 3 short coding) just on hoisting and recursion to strengthen those weak spots,
+
+ARROW FUNCTION
+Feedback Summary
+
+✅ You understand syntax, implicit return, and this inheritance well.
+
+⚠️ You need more clarity on block vs expression in arrow functions — {} means block, not return.
+
+⚠️ Remember: arrow functions don’t have this, arguments, super, or new.target.
+
+❌ When returning objects, always wrap in parentheses ({}).

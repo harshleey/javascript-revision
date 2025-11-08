@@ -1,0 +1,67 @@
+YOUR WEAK POINTS (Explained Clearly)
+1. Block Scope & Hoisting Confusion (Q1, Q6, Q7)
+
+You initially mixed up how var, let, and const behave inside blocks.
+
+var is function-scoped, not block-scoped. So it leaks out of {} blocks, which is why x became 30 in the outer scope.
+
+Accessing a let variable before its declaration triggers the Temporal Dead Zone → ReferenceError, not undefined.
+
+🧩 What to practice:
+
+console.log(a); // undefined
+var a = 5;
+
+console.log(b); // ❌ ReferenceError
+let b = 5;
+
+2. Type Coercion & Conversion (Q15, Q16)
+
+"5" - 2 → 3, because - forces numeric conversion.
+
+Boolean("") → false (empty string is falsy).
+
+You mixed these up slightly — a common beginner trap because + behaves differently from -.
+
+🧩 Practice more with:
+
+console.log("5" * 2);
+console.log("5" + 2);
+console.log("5" - 2);
+console.log(Boolean("0"));
+console.log(Boolean(0));
+
+3. Switch Comparison Behavior (Q30)
+
+switch uses strict equality (===) — no type coercion.
+So "2" only matches "2", not 2.
+
+🧩 Quick test:
+
+switch (2) {
+  case "2": console.log("String"); break;
+  case 2: console.log("Number"); break;
+}
+// Output: Number
+
+4. “typeof” Edge Cases (Q11)
+
+You said typeof NaN = "object" but it’s "number".
+
+This is one of those JS quirks worth memorizing.
+(Also note that typeof null is "object", which is another historical bug.)
+
+🧩 Try:
+
+console.log(typeof NaN); // "number"
+console.log(typeof null); // "object"
+console.log(typeof undefined); // "undefined"
+
+
+Scoping & Hoisting: Play with `var`, `let`, and `const` in different blocks/functions -> Write 5 snippets predicting outputs, then run them 
+
+Type Coercion: Understand how `+`, `-`, `==`, and `===` behave differently => Create a table comparing `"5" + 2`, `"5" - 2`, `true + false`, etc. 
+
+Switch Logic: Mix `number` and `string` cases in one `switch` =>  Test what happens with `"2"` vs `2`
+
+typeof quirks: Memorize `typeof null` and `typeof NaN` => Print all `typeof` values for primitives

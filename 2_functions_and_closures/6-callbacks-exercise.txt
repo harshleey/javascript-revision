@@ -1,0 +1,46 @@
+🟡 MEDIUM LEVEL - JavaScript Callbacks
+🔥 Question 1: Custom Array Filter with Callbacks
+Build a custom filter function that:
+
+Mimics the native Array.prototype.filter() method
+
+Accepts an array and a callback function
+
+Returns a new array with elements that pass the callback test
+
+The callback should receive (element, index, array) as parameters
+
+🔥 Question 2: Async Data Processor with Error Handling
+Build an async data processor that:
+
+Processes an array of data through async callbacks
+
+Handles both successful and failed operations
+
+Returns results and errors separately
+
+Continues processing even if some operations fail
+
+🔥 Question 3: Custom Array Map with Callbacks
+Build a custom map function that:
+
+Mimics the native Array.prototype.map() method
+
+Accepts an array and a callback function
+
+Returns a new array with each element transformed by the callback
+
+The callback should receive (element, index, array) as parameters
+
+Should not mutate the original array
+
+🔥 Question 4: Batch Processor with Callback & Concurrency Limit
+Build a batch processor that:
+
+Processes an array of items in batches with concurrency control
+
+Accepts array, processor callback, concurrency limit, and completion callback
+
+Processes items concurrently but respects the concurrency limit
+
+Calls completion callback with all results when done

@@ -1,0 +1,69 @@
+🧠 10 MCQs (No answers yet)
+
+1. What is the main difference between arrow functions and regular functions?
+A) Arrow functions are slower
+B) Arrow functions don’t have their own this *
+C) Arrow functions can be constructors
+D) Arrow functions can’t return values
+
+2. What will this print?
+const add = (a, b) => a + b;
+console.log(add(2, 3));
+ANS: 5
+
+
+3. What happens when you use new with an arrow function?
+A) Works normally
+B) Returns undefined
+C) Throws an error *
+D) Returns an object
+
+4. Which of these correctly defines an arrow function that returns "Hello"?
+A) const hi = () => "Hello"; * 
+B) const hi = => "Hello";
+C) const hi = () => { "Hello" }
+D) const hi = ("Hello") => {};
+
+5. What is the output?
+const add = (a, b) => { a + b };
+console.log(add(2, 3));
+ANS: Error
+CORRECTION: undefined
+
+6. What is printed?
+const sayHi = name => `Hi, ${name}`;
+console.log(sayHi("John"));
+ANS: Hi John
+
+7. Which statement about arrow functions and this is correct?
+A) Arrow functions create their own this context
+B) Arrow functions inherit this from parent scope *
+C) Arrow functions bind this to the global object
+D) Arrow functions always have undefined this
+
+8. What does this print?
+const obj = {
+  value: 10,
+  regular: function() {
+    return this.value;
+  },
+  arrow: () => this.value
+};
+console.log(obj.regular(), obj.arrow());
+ANS: 10, 10
+CORRECTION: 10, undefined
+obj.regular() = 10, but obj.arrow() inherits this from global → undefined
+
+
+9. How do you return an object from an arrow function implicitly?
+A) () => { name: "John" }
+B) () => return { name: "John" }
+C) () => ({ name: "John" }) +
+D) () => { return name: "John" } *
+
+10. What happens when you use arguments inside an arrow function?
+A) It refers to local arguments *
+B) It refers to parent’s arguments +
+C) Throws a SyntaxError
+D) Always undefined
+CORRECTION: Arrow functions don’t have their own arguments; they use the parent scope’s arguments.

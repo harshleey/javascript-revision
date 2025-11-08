@@ -1,0 +1,69 @@
+✅ Good Use Cases:
+javascript
+// 1. Callbacks and array methods
+const numbers = [1, 2, 3];
+const doubled = numbers.map(n => n * 2);
+
+// 2. Promises and async code
+fetch(url)
+    .then(response => response.json())
+    .then(data => console.log(data));
+
+// 3. Short, simple functions
+const isEven = n => n % 2 === 0;
+
+// 4. Preserving this in callbacks
+class Button {
+    constructor() {
+        this.clicks = 0;
+        this.element.addEventListener('click', () => {
+            this.clicks++; // ✅ this refers to Button instance
+        });
+    }
+}
+
+❌ Avoid Arrow Functions For:
+javascript
+// 1. Object methods
+const obj = {
+    name: "Bad",
+    // ❌ Don't do this:
+    badMethod: () => console.log(this.name), // undefined
+    
+    // ✅ Do this instead:
+    goodMethod: function() { console.log(this.name); }
+};
+
+// 2. Constructor functions
+// ❌ const Person = (name) => { this.name = name; }
+// ✅ function Person(name) { this.name = name; }
+
+// 3. Functions using arguments object
+// ❌ const sum = () => { console.log(arguments); }
+// ✅ function sum() { console.log(arguments); }
+// ✅ const sum = (...args) => { console.log(args); }
+
+📋 Quick Reference Card
+javascript
+// ✅ Implicit return (single expression)
+const square = x => x * x;
+
+// ✅ Explicit return (multiple statements)
+const complex = (x, y) => {
+    const result = x + y;
+    return result * 2;
+};
+
+// ✅ Returning objects (wrap in parentheses)
+const makePoint = (x, y) => ({ x, y });
+
+// ✅ Single parameter (no parentheses needed)
+const greet = name => `Hello ${name}`;
+
+// ✅ No parameters (empty parentheses)
+const random = () => Math.random();
+
+// ❌ No arguments object
+// ❌ No own this binding  
+// ❌ Can't use as constructor
+// ❌ Can't use yield in generator arrows

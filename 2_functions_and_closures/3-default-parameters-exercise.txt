@@ -1,0 +1,92 @@
+⚙️ 3. Default Parameters
+🧠 10 MCQs (No answers yet)
+
+1. What is the output?
+
+function greet(name = "Guest") {
+  console.log(`Hello, ${name}!`);
+}
+greet();
+
+A) Error
+B) Hello, undefined!
+C) Hello, Guest! *
+D) Nothing
+
+2. Which one is invalid?
+A) function test(a = 1, b) {} +
+B) function test(a, b = 1) {}
+C) function test(a = 1, b = 2) {}
+D) function test(a = 1) {} *
+CORRECTION: Parameters with defaults must come after non-default ones.
+
+3. What happens when undefined is passed for a default parameter?
+A) The default value is used +
+B) The value stays undefined
+C) Throws error *
+D) The next parameter is used
+
+4. What happens when null is passed instead?
+A) The default is used
+B) The value becomes null *
+C) Throws error
+D) Ignored
+
+5. What is printed?
+
+function add(a = 2, b = 3) {
+  return a + b;
+}
+console.log(add(5));
+
+A) 8 *
+B) 5
+C) 3
+D) 10
+
+6. Default parameters can:
+A) Use values from earlier parameters *
+B) Only use constants
+C) Use global variables only
+D) Never depend on other parameters
+
+7. Which is true about evaluation of default parameters?
+A) They’re evaluated once at compile time
+B) They’re evaluated at each call 
+C) They’re evaluated at runtime for all parameters *
+D) They’re never re-evaluated
+
+8. What is printed?
+
+function test(a = 1, b = a + 1) {
+  console.log(a, b);
+}
+test(2);
+
+
+A) 2, 2
+B) 2, 3 *
+C) 1, 2
+D) Error
+
+9. What happens here?
+
+function demo(x = y, y = 1) {
+  return x + y;
+}
+demo();
+
+
+A) 2
+B) Error +
+C) NaN
+D) Undefined
+
+10. Default parameters can be:
+A) Expressions
+B) Function calls
+C) Objects or arrays
+D) All of the above *
+
+
+

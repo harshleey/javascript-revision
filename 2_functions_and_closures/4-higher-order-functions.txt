@@ -1,0 +1,112 @@
+🧠 4. Higher-Order Functions
+🧩 15 MCQs (No answers yet)
+
+What is a higher-order function?
+A) A function returning or accepting another function *
+B) A function that runs faster
+C) A function with nested loops
+D) A constructor
+
+Which is a higher-order function?
+A) Math.max
+B) Array.map *
+C) console.log
+D) parseInt
+
+What does forEach() return?
+A) New array *
+B) Original array
+C) Undefined +
+D) Boolean
+
+Which of these creates a new array?
+A) map +
+B) forEach *
+C) push
+D) pop
+
+What is printed?
+
+[1, 2, 3].map(num => num * 2);
+
+
+A) [2, 4, 6] *
+B) [1, 2, 3]
+C) Error
+D) Undefined
+
+What is printed?
+
+const arr = [1, 2, 3];
+const res = arr.filter(n => n > 1);
+console.log(res);
+
+
+A) [2, 3] *
+B) [1, 2, 3]
+C) [1]
+D) undefined
+
+What is reduce() mainly used for?
+A) Merging multiple arrays
+B) Transforming arrays into single values *
+C) Filtering values
+D) Sorting
+
+What is the initial value in reduce used for?
+A) Starting accumulator *
+B) Array length
+C) Ending condition
+D) None
+
+What happens if initial value is omitted in reduce()?
+A) Uses first element as accumulator *
+B) Returns 0
+C) Throws error
+D) Returns undefined
+
+What does this print?
+
+const nums = [1, 2, 3];
+console.log(nums.filter(n => n > 2).map(n => n * 2));
+
+
+A) [2, 4]
+B) [6] *
+C) [1, 2, 3]
+D) Error
+
+Which is not a higher-order array method?
+A) map
+B) filter
+C) sort
+D) splice *
+
+What is printed?
+
+[1, 2, 3].forEach((n) => n * 2);
+
+
+A) [2, 4, 6] *
+B) [1, 2, 3]
+C) undefined +
+D) Error
+
+How many arguments can a map callback take?
+A) 1
+B) 2
+C) 3 *
+D) 4
+
+What are the three arguments of map’s callback?
+A) element, index, array *
+B) value, count, arr
+C) elem, length, copy
+D) data, i, key
+
+Which method stops early once condition is met?
+A) forEach
+B) filter
+C) find *
+D) map
+

@@ -1,0 +1,176 @@
+🔁 JavaScript Functions & Closures — Revision
+🧩 1. Function Declaration vs. Function Expression
+
+Function Declaration
+
+function greet() {
+  return "Hello!";
+}
+
+✅ Hoisted (can be called before it’s defined)
+✅ Named
+❌ Cannot be assigned conditionally
+
+Function Expression
+
+const greet = function() {
+  return "Hello!";
+};
+
+❌ Not hoisted (must be defined before use)
+✅ Can be anonymous (like the example above) or assigned to variables
+✅ Can be used conditionally:
+let greet;
+
+if (new Date().getHours() < 12) {
+  greet = function() {
+    return "Good morning!";
+  };
+} else {
+  greet = function() {
+    return "Good evening!";
+  };
+}
+
+console.log(greet()); // Output depends on the time
+
+
+⚡ 2. Arrow Functions (=>)
+
+A shorter syntax for writing functions.
+
+const add = (a, b) => a + b;
+
+Rules:
+
+- this is lexically bound (inherits from the outer scope)
+- Implicit return if there’s no { } block
+- Cannot be used as constructors (new). WHY?:
+
+Arrow functions were designed not to have their own this, arguments, super, or new.target. They were made for short, context-bound callbacks, not for creating objects.
+
+They inherit "this" from the surrounding scope — this is called lexical binding.
+If you try:
+const Person = (name) => {
+  this.name = name;
+};
+const user = new Person("Wonu");
+y
+
+You will get:
+TypeError: Person is not a constructor
+
+Because:
+- Arrow functions don’t create their own this — so there’s no new binding.
+- The JavaScript engine doesn’t give them a [[Construct]] method, which is required for the new keyword to work.
+
+Examples:
+const greet = name => `Hello ${name}`;
+const multiply = (a, b) => { return a * b; };
+
+
+⚙️ 3. Default Parameters
+
+Set default values for parameters if no argument is provided:
+
+function greet(name = "Guest") {
+  return `Hello, ${name}!`;
+}
+console.log(greet()); // "Hello, Guest!"
+
+🧠 4. Higher-Order Functions (HOFs)
+Functions that take other functions as arguments or return functions.
+
+Example:
+
+function repeat(fn, times) {
+  for (let i = 0; i < times; i++) fn();
+}
+repeat(() => console.log("👋 Hello!"), 3);
+👋 Hello!
+👋 Hello!
+👋 Hello!
+repeat is a HOF because it takes another function (() => console.log("👋 Hello!")) as input.
+
+Built-in HOFs:
+map(), filter(), reduce(), forEach(), some(), every()
+
+💬 Real-Life Analogy
+
+Think of a Higher-Order Function like a manager:
+
+The manager (function) doesn’t do the job themselves.
+
+They call another person (another function) to handle each task or return a new one for later.
+
+FOR Example: Using for-each
+cart.forEach(product => { console.log(${product.quantity} × ${product.item} ($${product.price} each)); });
+
+product => {
+  console.log(`${product.quantity} × ${product.item} ($${product.price} each)`);
+}: is an arrow function — a callback that you are passing into forEach().
+
+So forEach() is literally doing this internally:
+
+// Simplified version of what forEach does
+Array.prototype.forEach = function(callback) {
+  for (let i = 0; i < this.length; i++) {
+    callback(this[i], i, this); // it calls your function for every element
+  }
+};
+
+
+Your code is equivalent to:
+
+cart.forEach(function(product) {
+  console.log(`${product.quantity} × ${product.item} ($${product.price} each)`);
+});
+
+🌀 5. Closures
+
+A closure happens when an inner function remembers variables from its outer function scope, even after the outer function has finished executing.
+
+Think of it like:
+“A function carries a backpack of variables from where it was born.”
+
+function makeCounter() {
+  let count = 0;
+  return function() {
+    count++;
+    return count;
+  };
+}
+const counter = makeCounter();
+console.log(counter()); // 1
+console.log(counter()); // 2
+
+🔍 Breakdown:
+
+1. When makeCounter() runs, it creates a local variable count = 0.
+
+2. It returns an inner function, which remembers the variable count.
+
+3. Even though makeCounter() finished executing,
+the variable count is kept alive inside the closure.
+
+4. So each time counter() is called, it keeps updating the same count.
+
+
+👉 counter remembers count because of closure.
+
+
+
+🔄 6. Callback Functions
+
+A callback is a function passed as an argument to another function — executed later.
+
+function fetchData(callback) {
+  setTimeout(() => {
+    callback("Data loaded!");
+  }, 1000);
+}
+
+fetchData(message => console.log(message));
+
+
+Callbacks are foundational for asynchronous programming.

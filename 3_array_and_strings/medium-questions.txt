@@ -1,0 +1,88 @@
+Practical JavaScript Array & String Methods Exercises
+1. User Name Formatter
+You have an array of user names: ["john doe", "jane smith", "bob JONES"]. Write a function that returns a new array with each name properly capitalized (first letter uppercase, rest lowercase).
+
+2. Product Search
+Given this array of products:
+
+javascript
+const products = [
+  "Laptop Dell XPS",
+  "iPhone 13 Pro", 
+  "Samsung Galaxy S21",
+  "MacBook Pro 16",
+  "iPad Air"
+];
+Write a function that takes a search term and returns all products that contain that term (case-insensitive).
+
+3. URL Slug Generator
+Create a function that takes a blog post title like "My Awesome Blog Post!" and converts it to a URL slug: "my-awesome-blog-post". Remove punctuation and replace spaces with hyphens.
+
+4. Shopping Cart Total
+You have a shopping cart array:
+
+javascript
+const cart = [
+  { item: "Book", price: 15.99, quantity: 2 },
+  { item: "Pen", price: 1.99, quantity: 5 },
+  { item: "Notebook", price: 4.99, quantity: 3 }
+];
+Write a function that calculates the total cost of all items in the cart.
+
+5. Email Validator
+Create a function that validates email addresses. It should return true for valid emails and false for invalid ones. A valid email should:
+
+Contain an @ symbol
+
+Have a domain with at least one dot
+
+Not start or end with special characters
+
+6. Task Manager
+You're building a task manager. Given this array:
+
+javascript
+let tasks = ["Buy groceries", "Walk the dog", "Finish homework", "Call mom"];
+Write functions to:
+
+Add a new task
+
+Mark a task as complete (remove it)
+
+Clear all completed tasks (for now, just clear the array)
+
+7. Sentence Analyzer
+Create a function that takes a sentence and returns an object with:
+
+Total number of words
+
+Total number of characters (excluding spaces)
+
+The longest word in the sentence
+
+Example: "Hello world programming" → {words: 3, characters: 22, longest: "programming"}
+
+8. Data Cleanup
+You have data from a form where users entered numbers as strings, some with commas:
+
+javascript
+const priceStrings = ["15.99", "2,500.50", "100", "1,000", "45.75"];
+Write a function that converts these to actual numbers and returns their sum.
+
+9. Tag Extractor
+From a string containing hashtags like "#javascript #webdev #coding #javascript", write a function that returns an array of unique hashtags (without the # symbol), sorted alphabetically.
+
+10. Student Grade Calculator
+Given an array of student scores:
+
+javascript
+const scores = [85, 92, 78, 95, 88, 76, 91, 84];
+Write a function that returns an object with:
+
+The highest score
+
+The lowest score
+
+The average score
+
+Number of students who passed (score ≥ 80)

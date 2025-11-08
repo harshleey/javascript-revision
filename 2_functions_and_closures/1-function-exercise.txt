@@ -1,0 +1,104 @@
+🧠 15 MCQs (No answers yet)
+
+1. Which statement about function declarations is true?
+A) They are not hoisted
+B) They can be called before definition *
+C) They must be anonymous
+D) They can’t return values
+
+2. What is the output?
+sayHi();
+function sayHi() {
+  console.log("Hello!");
+}
+ANS: Hello!
+
+
+3. What happens here?
+greet();
+const greet = function() {
+  console.log("Hi");
+};
+ANS: It throws an undefined error 
+CORRECTION: ReferenceError. const is not hoisted to be used before declaration.
+
+4. What type is typeof function(){}
+A) "object" *
+B) "function" +
+C) "method"
+D) "callable"
+
+5. Which is a valid function expression?
+A) let x = function() {}; *
+B) function = let() {};
+C) let function() {};
+D) def function() {};
+
+6. What is the difference between var and const function expressions?
+A) Both hoisted fully
+B) var-hoisted, const-temporal dead zone + ()
+C) const-hoisted, var-blocked
+D) No difference *
+CORRECTION: var is hoisted (initialized as undefined), const is in the temporal dead zone until declared.
+
+7. What is printed?
+console.log(sum(2,3));
+function sum(a,b){return a+b;}
+ANS: 5
+
+8. What happens?
+console.log(multiply(2,3));
+var multiply = function(a,b){return a*b;};
+ANS: 6
+CORRECTION: TypeError: multiply is not a function.
+
+9. Which function type allows recursion?
+A) Anonymous expression
+B) Named expression +
+C) Arrow function
+D) Callback function *
+
+10. What is the output?
+let sayHi = function greet() {
+  return "Hi";
+};
+console.log(typeof greet);
+ANS: "object"
+CORRECTION: "undefined". greet is not accessible outside — so typeof greet === "undefined".
+
+11. What does this print?
+function test() {
+  console.log("Declared!");
+}
+var test = function() {
+  console.log("Expression!");
+};
+test();
+ANS: Error
+CORRECTION: "Expression!". Function declaration is hoisted, but then overwritten by the var-assigned expression before execution.
+
+
+12. Which can be conditionally declared safely?
+A) Function declaration
+B) Function expression *
+C) Both
+D) None
+
+13. What is a key advantage of function expressions?
+A) Smaller memory use
+B) Can be anonymous and passed as data *
+C) Always faster
+D) Always global
+
+14. What happens when two declarations share the same name?
+A) Error *
+B) The last overwrites the first +
+C) Both coexist
+D) Random behavior
+
+15. Which is not true of function declarations?
+A) Are hoisted
+B) Are block-scoped +
+C) Can be recursive *
+D) Must have names
+CORRECTION: Function declarations are not block-scoped; they’re function/global scoped.

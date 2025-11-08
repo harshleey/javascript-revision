@@ -1,0 +1,157 @@
+🧱 1. Core JavaScript Fundamentals ()
+You should be 100% comfortable with:
+Variables & Scopes (let, const, var, and scope rules)
+
+Data Types (strings, numbers, booleans, objects, arrays, null, undefined)
+
+Type Conversion & Coercion
+
+Operators (arithmetic, logical, comparison, ternary)
+
+Conditionals (if, else if, switch)
+Loops & Iteration (for, while, for...of, for...in, forEach)
+
+✅ Goal: You can manipulate arrays/objects and control loops without Googling syntax.
+
+🔁 2. Functions & Closures
+Understand:
+Function declaration vs. expression
+
+Arrow functions (=>)
+
+Default parameters
+
+Higher-order functions (functions as arguments/return values)
+
+Closures — vital for understanding variable scope
+
+Callback functions
+
+✅ Goal: Be able to write reusable helper functions for array transformations or recursion.
+
+🧮 3. Arrays & String Methods (Very Important for DSA)
+
+These are used everywhere in coding challenges. You should know what they do and how to use them:
+
+Array methods:
+
+.push(), .pop(), .shift(), .unshift()
+
+.map(), .filter(), .reduce(), .find(), .some(), .every()
+
+.sort() (and custom comparator functions)
+
+.concat(), .slice(), .splice()
+
+Spread operator [...arr]
+
+String methods:
+
+.split(), .join()
+
+.toLowerCase(), .toUpperCase()
+
+.includes(), .indexOf()
+
+.replace(), .substring()
+
+✅ Goal: You can solve a problem like reversing a string or flattening an array easily.
+
+🧩 4. Objects and Maps/Sets
+
+Understand how to:
+
+Loop through objects (for...in, Object.keys, Object.entries)
+
+Use Map and Set for optimized lookups
+
+Distinguish between shallow vs. deep copies (Object.assign, spread)
+
+Use destructuring and rest/spread syntax
+
+✅ Goal: You can use objects or maps to count frequencies or store key-value pairs efficiently.
+
+🧠 5. ES6+ Features
+
+These make your solutions cleaner and faster:
+
+Destructuring
+
+Template literals
+
+Spread and rest operators
+
+Default parameters
+
+Optional chaining (?.)
+
+Nullish coalescing (??)
+
+const vs let semantics
+
+Arrow functions
+
+✅ Goal: You write clean, modern, readable JS code — not ES5 spaghetti.
+
+⚙️ 6. Understanding “How JS Works”
+
+You’ll need these for debugging and efficient thinking:
+
+Call stack and execution context
+
+Pass-by-value vs pass-by-reference
+
+Event loop (sync vs async, micro tasks)
+
+Time complexity (Big O notation basics)
+
+Recursion and how the call stack behaves
+
+✅ Goal: You can reason through why your code behaves the way it does.
+
+💡 7. Debugging & Problem Solving
+
+Use console.log() effectively
+
+Use Chrome DevTools or Node’s debugger
+
+Learn to trace through logic manually
+
+Break large problems into smaller chunks
+
+✅ Goal: You can debug algorithmic problems without frustration.
+
+🧮 8. Basic Math & Logic Skills
+
+For DSA, you’ll frequently use:
+
+Modulo operations
+
+Math functions (Math.floor, Math.max, Math.min, Math.abs)
+
+Random number generation
+
+Pattern recognition with loops
+
+✅ Goal: Be comfortable implementing things like “check if a number is prime” or “reverse an integer.”
+
+🚀 9. Optional But Useful:
+
+Recursion patterns
+
+Spread/rest in function arguments
+
+Understanding of immutability
+
+Familiarity with time complexity (O(n), O(log n), etc.)
+
+🧭 Learning Path Suggestion
+
+Here’s a good progression before LeetCode:
+
+Start Codewars (Level 8kyu → 6kyu) to master JS syntax & tricks.
+Focus on: arrays, strings, loops, conditionals.
+
+Move to 5kyu+ challenges — start solving small algorithmic problems.
+
+Then go to LeetCode (start with Easy problems under arrays, strings, and hash maps).

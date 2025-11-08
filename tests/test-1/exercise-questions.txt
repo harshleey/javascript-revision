@@ -1,0 +1,73 @@
+🟢 EASY LEVEL (5 Programs)
+1. Temperature Converter
+Build a function that converts between Celsius and Fahrenheit
+Test: convertTemperature(25, 'C') → 77
+Test: convertTemperature(77, 'F') → 25
+
+2. Simple Counter with Closure
+Create a counter using closures that can increment, decrement, and reset
+Test: After increment(), increment(), getCount() → 2
+Test: After reset(), getCount() → 0
+
+3. Grade Calculator
+Write a function that takes a score and returns a letter grade (A-F)
+Test: calculateGrade(85) → 'B'
+Test: calculateGrade(92) → 'A'
+
+4. Array Statistics
+Create a function that analyzes an array and returns sum, average, max, min
+Test: analyzeArray([1, 2, 3, 4, 5]) → {sum: 15, average: 3, max: 5, min: 1}
+
+5. String Reverser
+Build a function that reverses a string without using built-in reverse()
+Test: reverseString('hello') → 'olleh'
+Test: reverseString('JavaScript') → 'tpircSavaJ'
+
+🟡 MEDIUM LEVEL (5 Programs)
+6. Shopping Cart with Closures
+Create a shopping cart system using closures to manage items and total
+Test: Add 2 apples ($1 each) + 1 banana ($0.5) → Total: $2.50
+Test: Remove apple → Total: $1.50
+
+7. Password Validator
+Build a function that validates passwords against multiple criteria
+Test: validatePassword('Abc123!') → {valid: true, errors: []}
+Test: validatePassword('abc') → {valid: false, errors: ['too short', 'no uppercase']}
+
+8. Todo List Manager
+Create a todo list with add, remove, toggle complete, and filter functions
+Test: Add "Learn JS", toggle complete → [{task: 'Learn JS', completed: true}]
+Test: Filter active tasks → only uncompleted tasks
+
+9. Digital Clock with Auto-Update
+Build a clock that updates every second using setInterval
+Test: Clock shows current time, updates every second automatically
+
+10. Expense Tracker
+Create a system to track expenses with categories and monthly totals
+Test: Add food: $20, transport: $15 → Total: $35
+Test: Get monthly total for 'food' → $20
+
+🔴 HARD LEVEL (5 Programs)
+11. Promise-based File Processor
+Simulate file processing with async operations using Promises
+Test: processFiles(['file1.txt', 'file2.txt']) → Processes files in sequence, returns results array
+
+12. Memoized Fibonacci Calculator
+Implement Fibonacci with memoization for optimal performance
+Test: fibonacci(10) → 55 (fast even on repeated calls)
+Test: fibonacci(50) → 12586269025 (efficient)
+
+13. Debounce Search Function
+Create a search function that delays API calls using debouncing
+Test: Rapid typing "hello" only triggers one API call after typing stops
+
+14. Custom Array Methods
+Implement your own versions of map, filter, and reduce
+Test: myMap([1,2,3], x => x*2) → [2,4,6]
+Test: myFilter([1,2,3], x => x>1) → [2,3]
+
+15. Module Pattern Library
+Build a utility library using the module pattern with private/public methods
+Test: MathUtils.add(2,3) → 5
+Test: Internal helper functions are private (not accessible)

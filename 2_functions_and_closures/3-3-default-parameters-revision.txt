@@ -1,0 +1,240 @@
+🎯 JavaScript Default Parameters: Complete Guide
+📚 Basic Syntax & Usage
+Simple Default Values
+javascript
+function greet(name = "Anonymous") {
+    return `Hello, ${name}!`;
+}
+
+console.log(greet("Alice"));    // "Hello, Alice!"
+console.log(greet());           // "Hello, Anonymous!"
+console.log(greet(undefined));  // "Hello, Anonymous!"
+console.log(greet(null));       // "Hello, null!"
+Multiple Default Parameters
+javascript
+function createUser(name = "Guest", age = 18, isActive = true) {
+    return { name, age, isActive };
+}
+
+console.log(createUser()); 
+// { name: "Guest", age: 18, isActive: true }
+
+console.log(createUser("Alice", 25));
+// { name: "Alice", age: 25, isActive: true }
+
+console.log(createUser("Bob", undefined, false));
+// { name: "Bob", age: 18, isActive: false }
+🔍 How Default Parameters Work
+Only for undefined (not null or other falsy values)
+javascript
+function testDefaults(a = "default A", b = "default B") {
+    console.log(`a: ${a}, b: ${b}`);
+}
+
+testDefaults();              // a: default A, b: default B
+testDefaults(undefined, 5);  // a: default A, b: 5
+testDefaults(null, 0);       // a: null, b: 0 (null and 0 are not undefined!)
+testDefaults("", false);     // a: , b: false (empty string and false are not undefined!)
+🚀 Advanced Features
+1. Expressions as Default Values
+javascript
+function calculateTotal(price, tax = price * 0.1, discount = 0) {
+    return price + tax - discount;
+}
+
+console.log(calculateTotal(100));        // 110 (100 + 10 - 0)
+console.log(calculateTotal(100, 15));    // 115 (100 + 15 - 0)
+console.log(calculateTotal(100, 20, 5)); // 115 (100 + 20 - 5)
+2. Function Calls as Default Values
+javascript
+function getCurrentTime() {
+    return new Date().toLocaleTimeString();
+}
+
+function createMessage(message, timestamp = getCurrentTime()) {
+    return `[${timestamp}] ${message}`;
+}
+
+console.log(createMessage("Hello!")); 
+// "[2:30:45 PM] Hello!" (timestamp evaluated at call time)
+
+console.log(createMessage("Hi!", "Custom Time"));
+// "[Custom Time] Hi!"
+3. Using Previous Parameters
+javascript
+function createRectangle(width = 10, height = width * 2) {
+    return { width, height, area: width * height };
+}
+
+console.log(createRectangle());      // { width: 10, height: 20, area: 200 }
+console.log(createRectangle(5));     // { width: 5, height: 10, area: 50 }
+console.log(createRectangle(3, 7));  // { width: 3, height: 7, area: 21 }
+⚠️ Important Behaviors & Gotchas
+1. Temporal Dead Zone for Parameters
+javascript
+function trickyExample(a = b, b = 10) {
+    console.log(a, b);
+}
+
+// trickyExample(); // ReferenceError: Cannot access 'b' before initialization
+// Because 'a' tries to use 'b' before it's initialized
+
+function fixedExample(a = 10, b = a * 2) {
+    console.log(a, b); // This works: a can use previously declared parameters
+}
+
+fixedExample(); // 10, 20
+2. Default Parameters Create Their Own Scope
+javascript
+let global = "global";
+
+function scopeTest(a = global, b = a) {
+    let global = "local";
+    console.log(a, b);
+}
+
+scopeTest(); // "global", "global" (uses outer scope, not function body)
+3. arguments Object Behavior
+javascript
+function testArguments(a = 1, b = 2) {
+    console.log("Arguments:", arguments[0], arguments[1]);
+    console.log("Parameters:", a, b);
+}
+
+testArguments();           // Arguments: undefined undefined | Parameters: 1 2
+testArguments(10);         // Arguments: 10 undefined | Parameters: 10 2
+testArguments(10, 20);     // Arguments: 10 20 | Parameters: 10 20
+testArguments(undefined, 20); // Arguments: undefined 20 | Parameters: 1 20
+🎯 Practical Patterns
+1. Required Parameter Pattern
+javascript
+function required(paramName) {
+    throw new Error(`Parameter '${paramName}' is required`);
+}
+
+function createUser(id = required("id"), name = "Anonymous") {
+    return { id, name };
+}
+
+// createUser(); // Error: Parameter 'id' is required
+console.log(createUser(123, "Alice")); // { id: 123, name: "Alice" }
+2. Configuration Object with Defaults
+javascript
+function initApp(config = {}) {
+    const {
+        apiUrl = "https://api.example.com",
+        timeout = 5000,
+        retries = 3,
+        debug = false
+    } = config;
+    
+    console.log(`API: ${apiUrl}, Timeout: ${timeout}ms, Retries: ${retries}, Debug: ${debug}`);
+}
+
+initApp(); 
+// API: https://api.example.com, Timeout: 5000ms, Retries: 3, Debug: false
+
+initApp({ timeout: 10000, debug: true });
+// API: https://api.example.com, Timeout: 10000ms, Retries: 3, Debug: true
+3. Default Callbacks
+javascript
+function fetchData(url, onSuccess = (data) => console.log(data), onError = (err) => console.error(err)) {
+    // Simulate API call
+    setTimeout(() => {
+        if (url.startsWith("https")) {
+            onSuccess(`Data from ${url}`);
+        } else {
+            onError("Invalid URL");
+        }
+    }, 100);
+}
+
+fetchData("https://api.com"); 
+// Logs: "Data from https://api.com" (uses default success handler)
+
+fetchData("http://api.com", undefined, (err) => alert(err));
+// Shows alert: "Invalid URL" (custom error handler)
+🔄 Destructuring with Default Parameters
+Object Destructuring
+javascript
+function processOrder({ 
+    items = [], 
+    shipping = "standard", 
+    discount = 0,
+    customer = { name: "Guest", email: "" }
+} = {}) { // Important: default the whole parameter to {}
+    
+    console.log(`Processing ${items.length} items with ${shipping} shipping`);
+    return { items, shipping, discount, customer };
+}
+
+processOrder(); 
+// "Processing 0 items with standard shipping"
+
+processOrder({ items: ["book", "pen"], shipping: "express" });
+// "Processing 2 items with express shipping"
+Array Destructuring
+javascript
+function getCoordinates([x = 0, y = 0, z = 0] = []) {
+    return { x, y, z };
+}
+
+console.log(getCoordinates());        // { x: 0, y: 0, z: 0 }
+console.log(getCoordinates([5, 10])); // { x: 5, y: 10, z: 0 }
+🚨 Common Mistakes & Solutions
+Mistake 1: Forgetting Default for Destructuring
+javascript
+// ❌ Wrong - will crash if no argument passed
+function badDestructure({ a = 1, b = 2 }) {
+    console.log(a, b);
+}
+// badDestructure(); // TypeError: Cannot destructure property 'a' of 'undefined'
+
+// ✅ Correct - default the parameter itself
+function goodDestructure({ a = 1, b = 2 } = {}) {
+    console.log(a, b);
+}
+goodDestructure(); // 1, 2 (works!)
+Mistake 2: Mutating Default Values
+javascript
+// ❌ Dangerous - shared array/object
+function addToCart(item, cart = []) {
+    cart.push(item);
+    return cart;
+}
+
+console.log(addToCart("apple")); // ["apple"]
+console.log(addToCart("banana")); // ["banana"] - Oops! Not ["apple", "banana"]
+
+// ✅ Safer - create new array each time
+function safeAddToCart(item, cart = []) {
+    return [...cart, item];
+}
+
+console.log(safeAddToCart("apple"));  // ["apple"]
+console.log(safeAddToCart("banana")); // ["banana"] (separate calls)
+📋 Quick Reference Table
+Scenario	Behavior
+function(a = 1)	Uses 1 if a is undefined
+function(a = 1, b = a)	Can use previous parameters
+function(a = b, b = 1)	ReferenceError (TDZ)
+function(a = null)	Uses null, not default
+function({a = 1} = {})	Safe destructuring with defaults
+Default values	Evaluated at call time, not definition
+🎯 Best Practices
+Place default parameters last for cleaner function calls
+
+Use destructuring with defaults for configuration objects
+
+Be careful with mutable defaults (arrays, objects)
+
+Remember null doesn't trigger defaults - only undefined
+
+Use the required parameter pattern for mandatory arguments
+
+javascript
+// ✅ Good structure
+function wellDesignedFunction(requiredParam, optionalParam = "default", config = {}) {
+    // Function body
+}
+Default parameters make your functions more robust, self-documenting, and easier to use! 🚀

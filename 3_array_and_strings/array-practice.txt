@@ -1,0 +1,145 @@
+1. What does the following code output?
+
+javascript
+const arr = [1, 2, 3, 4];
+const result = arr.map(x => x * 2).filter(x => x > 4);
+console.log(result);
+A) [2, 4, 6, 8]
+B) [6, 8] *
+C) [3, 4]
+D) [4]
+
+2. Which array method returns a new array without modifying the original?
+A) push()
+B) splice() *
+C) sort()
+D) slice() +
+
+3. What is the output of this code?
+
+javascript
+const numbers = [10, 20, 30, 40];
+const result = numbers.reduce((acc, curr) => acc + curr, 0);
+console.log(result);
+A) 10
+B) 100 *
+C) "10203040"
+D) [10, 20, 30, 40]
+
+4. Which method would you use to check if ANY element meets a condition?
+A) every()
+B) find()
+C) some() *
+D) filter()
+
+5. What does this code log?
+
+javascript
+const arr = [5, 12, 8, 130, 44];
+const found = arr.find(element => element > 10);
+console.log(found);
+A) 12 *
+B) [12, 130, 44]
+C) true
+D) 5
+
+6. How do you create a shallow copy of an array?
+A) arr.copy()
+B) arr.slice() *
+C) arr.clone()
+D) arr.duplicate()
+
+7. What's the output?
+
+javascript
+const fruits = ['apple', 'banana', 'orange'];
+fruits.splice(1, 1, 'grape');
+console.log(fruits);
+A) ['apple', 'grape', 'orange'] *
+B) ['apple', 'banana', 'grape']
+C) ['grape', 'banana', 'orange']
+D) ['apple', 'grape']
+
+8. Which method adds elements to the beginning of an array?
+A) append()
+B) push()
+C) unshift() *
+D) prepend()
+
+9. What does this code return?
+
+javascript
+const arr = [1, 2, 3, 4, 5];
+const result = arr.every(num => num < 10);
+console.log(result);
+A) true *
+B) false
+C) [1, 2, 3, 4, 5]
+D) 5
+
+10. What's the result of using the spread operator?
+
+javascript
+const arr1 = [1, 2];
+const arr2 = [3, 4];
+const combined = [...arr1, ...arr2];
+console.log(combined);
+A) [[1, 2], [3, 4]]
+B) [1, 2, 3, 4] *
+C) "1,23,4"
+D) [1, 2, [3, 4]]
+
+11. Which method removes the last element from an array?
+A) remove()
+B) pop() *
+C) shift()
+D) delete()
+
+12. What does this code output?
+
+javascript
+const numbers = [1, 4, 9];
+const roots = numbers.map(Math.sqrt);
+console.log(roots);
+A) [1, 2, 3] *
+B) [1, 4, 9]
+C) [1, 16, 81]
+D) [1, 2.5, 4.5]
+
+13. How do you check if ALL elements meet a condition?
+A) some()
+B) filter()
+C) every() *
+D) includes()
+
+14. What's the output?
+
+javascript
+const arr = ['a', 'b', 'c'];
+console.log(arr.includes('b'));
+A) 1
+B) true *
+C) false
+D) 2
+
+15. Which method transforms an array into a single value?
+A) transform()
+B) reduce() *
+C) compress()
+D) fold()
+
+🎪 BONUS CHALLENGE QUESTION
+16. What does this complex array method chain produce?
+
+javascript
+const data = [1, 2, 3, 4, 5, 6];
+const result = data
+  .filter(x => x % 2 === 0)
+  .map(x => x * 3)
+  .reduce((sum, val) => sum + val, 0);
+console.log(result);
+A) 18
+B) 36 *
+C) [6, 12, 18]
+D) 90
+
