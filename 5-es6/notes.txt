@@ -1,0 +1,205 @@
+JavaScript ES6+ Cheat Sheet
+1. Variable Declarations
+javascript
+// Old
+var name = "John";
+
+// New
+let age = 25;        // Mutable
+const PI = 3.14;     // Immutable
+2. Arrow Functions
+javascript
+// Regular function
+function add(a, b) { return a + b; }
+
+// Arrow function
+const add = (a, b) => a + b;
+const square = x => x * x;
+const greet = () => "Hello!";
+
+// No 'this' binding - uses parent's this
+3. Template Literals
+javascript
+const name = "Alice";
+const age = 30;
+
+// Old
+console.log("Hello " + name + ", you are " + age);
+
+// New
+console.log(`Hello ${name}, you are ${age}`);
+console.log(`Next year: ${age + 1}`);
+4. Destructuring
+javascript
+// Array Destructuring
+const [first, second] = [10, 20];
+const [a, b, ...rest] = [1, 2, 3, 4]; // rest = [3,4]
+
+// Object Destructuring
+const {name, age} = person;
+const {name: userName, age: userAge} = person; // rename
+const {city = "Unknown"} = person; // default value
+5. Spread & Rest Operators
+javascript
+// Spread (...)
+const arr1 = [1, 2, 3];
+const arr2 = [...arr1, 4, 5]; // [1,2,3,4,5]
+
+const obj1 = {a: 1, b: 2};
+const obj2 = {...obj1, c: 3}; // {a:1, b:2, c:3}
+
+// Rest (...)
+function sum(...numbers) {
+  return numbers.reduce((total, num) => total + num);
+}
+6. Object Shorthand
+javascript
+const name = "John";
+const age = 25;
+
+// Old
+const person = {name: name, age: age};
+
+// New
+const person = {name, age};
+
+// Method shorthand
+const calculator = {
+  add(a, b) { return a + b; },  // Instead of add: function(a,b)
+  multiply(a, b) { return a * b; }
+};
+7. Default Parameters
+javascript
+// Old
+function greet(name) {
+  name = name || "Guest";
+}
+
+// New
+function greet(name = "Guest", age = 18) {
+  return `Hello ${name}, age ${age}`;
+}
+8. Enhanced Object Literals
+javascript
+const propName = "email";
+
+const user = {
+  name: "Alice",
+  [propName]: "alice@email.com",  // Computed property
+  login() { /* method */ },        // Method shorthand
+  [`user_${Date.now()}`]: "value"  // Dynamic key
+};
+9. Promises & Async/Await
+javascript
+// Promise
+fetch(url)
+  .then(response => response.json())
+  .then(data => console.log(data))
+  .catch(error => console.error(error));
+
+// Async/Await (Cleaner!)
+async function getData() {
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+}
+10. Modules
+javascript
+// Exporting
+export const PI = 3.14;
+export function add(a, b) { return a + b; }
+export default class Calculator { /* ... */ }
+
+// Importing
+import Calculator from './calculator.js';
+import { PI, add } from './math.js';
+import * as MathUtils from './math.js';
+11. Array Methods
+javascript
+const numbers = [1, 2, 3, 4, 5];
+
+// Map - transform each element
+const doubled = numbers.map(n => n * 2);
+
+// Filter - keep matching elements
+const evens = numbers.filter(n => n % 2 === 0);
+
+// Find - find first match
+const firstEven = numbers.find(n => n % 2 === 0);
+
+// Reduce - accumulate values
+const sum = numbers.reduce((total, n) => total + n, 0);
+
+// Some/Every - test conditions
+const hasEven = numbers.some(n => n % 2 === 0);
+const allPositive = numbers.every(n => n > 0);
+12. Classes
+javascript
+class Person {
+  constructor(name, age) {
+    this.name = name;
+    this.age = age;
+  }
+
+  // Method
+  greet() {
+    return `Hello, I'm ${this.name}`;
+  }
+
+  // Getter
+  get canVote() {
+    return this.age >= 18;
+  }
+
+  // Static method
+  static compareAges(a, b) {
+    return a.age - b.age;
+  }
+}
+
+class Student extends Person {
+  constructor(name, age, grade) {
+    super(name, age);  // Call parent constructor
+    this.grade = grade;
+  }
+}
+13. Optional Chaining & Nullish Coalescing
+javascript
+// Optional Chaining (?.)
+const city = user?.address?.city;  // No error if null
+const name = user?.getName?.();    // Safe method call
+
+// Nullish Coalescing (??)
+const age = userAge ?? 18;  // Default only if null/undefined
+const count = input || 0;   // Default if falsy (0, "", false)
+const count2 = input ?? 0;  // Default only if null/undefined
+14. Short Practical Examples
+Quick Object Copy & Update:
+
+javascript
+const updatedUser = {...user, age: user.age + 1};
+Function with Defaults:
+
+javascript
+const createProduct = (name, price = 0, inStock = true) => ({
+  name, price, inStock
+});
+Array Cleanup:
+
+javascript
+const cleanData = data.filter(item => item !== null).map(item => item * 2);
+Safe Data Access:
+
+javascript
+const email = order?.customer?.email ?? "No email provided";
+Key Benefits:
+✅ Cleaner, more readable code
+✅ Less boilerplate
+✅ Better error handling
+✅ More powerful data manipulation
+✅ Modern development patterns
+

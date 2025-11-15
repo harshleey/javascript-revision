@@ -1,0 +1,36 @@
+Debugging & Problem-Solving: A Quick Guide
+The goal is to solve algorithmic problems methodically, without frustration.
+
+1. Break It Down
+Before writing code, split the large problem into smaller, manageable steps. Solve each step one by one.
+
+Example: For "Sort a list of names," the steps might be: 1) Get the list, 2) Compare two items, 3) Swap them if needed, 4) Repeat until the whole list is sorted.
+
+2. Trace Logic Manually
+Be the computer. Take a simple example and walk through your logic step-by-step with a pen and paper.
+
+Why it works: This exposes flaws in your reasoning before they become bugs in your code.
+
+3. Use console.log() Effectively
+Don't just guess; use console.log to see what's happening inside your code.
+
+Where to log:
+
+At the start and end of functions.
+
+Inside loops (log the index and key variables).
+
+Before and after critical conditional statements (if/else).
+
+Pro Tip: Use descriptive labels: console.log("Loop i=", i, "value=", arr[i]);
+
+4. Leverage the Debugger
+Move beyond console.log with the powerful tools in Chrome DevTools or Node.js debugger.
+
+Set Breakpoints: Pause your code on a specific line to inspect everything.
+
+Step Through Code: Execute your code line-by-line to watch how variables change.
+
+Inspect Variables: See the current state of all variables in the scope without cluttering your code.
+
+Your Anti-Frustration Mantra: "Stop, Isolate, and Check." When you hit a bug, don't panic. Stop, Isolate the problem section, and Check your assumptions against what the code is actually doing.

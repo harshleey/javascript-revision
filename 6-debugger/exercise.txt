@@ -1,0 +1,89 @@
+1. You are first presented with a complex problem like "Build a simple calendar for a given month." What is the most effective first step?
+A) Immediately open the code editor and start writing the HTML structure.
+B) Use console.log to check the system's date functions.
+C) Open Chrome DevTools to set a breakpoint in a script you haven't written yet.
+D) Break the problem into smaller chunks, like "find the first day of the month" and "generate the grid of days." *
+
+2. Your loop is supposed to sum numbers from 1 to 5, but it returns 0. You suspect the loop isn't running. What is the quickest first check?
+A) Manually trace the entire logic of the program on paper.
+B) Use console.log("Loop started") inside the loop block. *
+C) Set up a complex watch expression in the debugger.
+D) Break the loop into a separate, smaller function.
+
+3. You have a complex function with nested conditionals, and a variable's value is changing in a way you don't understand. What is the most precise way to investigate?
+A) Add console.log before every single line of code.
+B) Use the debugger to set a breakpoint at the function start and step through each line, watching the variables. *
+C) Isolate the function and run it with different inputs.
+D) Manually trace the logic for five different input scenarios.
+
+4. The instruction says: "Use Chrome DevTools or Node’s debugger." What is the primary advantage of using a debugger over console.log?
+A) It automatically fixes syntax errors for you.
+B) It allows you to pause execution and inspect the program state without modifying your code. *
+C) It runs your code faster.
+D) It is the only way to see the value of any variable.
+
+5. You've written a sorting algorithm, but the output is almost correct with one or two items out of order. What technique is best for finding the subtle flaw?
+A) Add a console.log("Sorting...") at the top of the function.
+B) Use the debugger to step through the code, specifically watching the comparisons and swaps near the end of the list. *
+C) Immediately try to break the problem down into even smaller chunks.
+D) Assume the logic is correct and check for typos in variable names.
+
+6. You are stuck on a problem and don't even know where to start coding. What should you do?
+A) Start typing any code that comes to mind; something might work.
+B) Open the debugger and hope it shows you the issue.
+C) Take a simple example and trace through the required logic manually with pen and paper. *
+D) Search for the complete solution online.
+
+7. Your console.log statements are showing that a function is being called with the wrong parameters. What does this help you do?
+A) It confirms the function's internal logic is perfect.
+B) It helps you isolate the problem; the bug is likely in the code that calls the function, not in the function itself. *
+C) It proves you need to use the debugger instead.
+D) It shows that you should never use parameters.
+
+8. According to the "Anti-Frustration Mantra," what should you do immediately after you Stop upon finding a bug?
+A) Check the entire codebase for any other possible errors.
+B) Isolate the section of code where the problem is occurring. *
+C) Panic and consider a career change.
+D) Ask someone else for the solution immediately.
+
+9. You have a large function that fetches data, processes it, and then renders it to the DOM. It's failing. What is a good application of "breaking it down"?
+A) Write a single, massive console.log statement to output the final result.
+B) Test the fetching, processing, and rendering steps independently. *
+C) Only use the debugger on the first line of the function.
+D) Manually trace the entire function from start to finish in one go.
+
+10. When you manually trace logic, what is the main benefit?
+A) It makes your code run faster in production.
+B) It helps you understand the flow of data and the purpose of each step, exposing flawed logic.
+C) It automatically writes pseudocode for you.
+D) It replaces the need to test your code with actual inputs.
+
+11. You see the message "Goal: You can debug algorithmic problems without frustration." What is the key to achieving this?
+A) Never encountering bugs in the first place.
+B) Having a methodical process, like the one described, to follow when you do encounter bugs. *
+C) Knowing the answer to every algorithm beforehand.
+D) Only working on easy problems.
+
+12. Your code throws an "undefined is not a function" error. You've used console.log and found the variable is undefined on line 25. What is the logical next step?
+A) The problem is solved; you found the line. You can stop.
+B) Use the debugger to inspect the program state on lines before line 25 to see why the variable was never assigned correctly. *
+C) Add a try/catch block to ignore the error.
+D) Manually trace the code, but only from line 25 onward.
+
+13. In which situation is console.log likely to be more practical than a full debugger setup?
+A) Debugging a complex state change in a large React component.
+B) Finding a race condition in an asynchronous function.
+C) Doing a quick check to see if a simple function is being called at all. *
+D) Stepping through a recursive function call stack.
+
+14. The note says "Break large problems into smaller chunks." At what stage should you primarily do this?
+A) Only after you have a fully working but buggy program.
+B) Only when you are completely stuck and don't know what the error is.
+C) Primarily during the initial planning and design phase, before you write most of your code. *
+D) After you have already finished debugging.
+
+15. The mantra ends with "Check." What are you checking?
+A) You are checking your bank account.
+B) You are checking your assumptions (e.g., "I think this variable is 5") against what the code is actually doing (e.g., "The debugger shows it's 0"). *
+C) You are checking if your code has any syntax errors.
+D) You are checking the time to see if you should take a break.
