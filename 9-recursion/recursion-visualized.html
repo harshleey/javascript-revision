@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Recursion Visualization</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      body {
+        background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+        color: white;
+        min-height: 100vh;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .container {
+        max-width: 1000px;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        border-radius: 15px;
+        padding: 25px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        margin-top: 20px;
+      }
+
+      h1 {
+        text-align: center;
+        margin-bottom: 20px;
+        font-size: 2.5rem;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      }
+
+      h2 {
+        margin: 20px 0 15px;
+        color: #fdbb2d;
+        border-bottom: 2px solid #fdbb2d;
+        padding-bottom: 8px;
+      }
+
+      .explanation {
+        line-height: 1.6;
+        margin-bottom: 25px;
+        font-size: 1.1rem;
+      }
+
+      .code-container {
+        background: #1e1e1e;
+        border-radius: 8px;
+        padding: 15px;
+        margin: 20px 0;
+        overflow-x: auto;
+        border-left: 4px solid #fdbb2d;
+      }
+
+      pre {
+        color: #f8f8f2;
+        font-family: "Consolas", monospace;
+        white-space: pre-wrap;
+        line-height: 1.5;
+      }
+
+      .recursion-tree {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 30px 0;
+      }
+
+      .node {
+        background: #3498db;
+        color: white;
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 10px;
+        font-weight: bold;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        transition: all 0.3s ease;
+        position: relative;
+      }
+
+      .node.active {
+        background: #e74c3c;
+        transform: scale(1.1);
+      }
+
+      .node.returning {
+        background: #2ecc71;
+      }
+
+      .level {
+        display: flex;
+        justify-content: center;
+        margin: 20px 0;
+        position: relative;
+      }
+
+      .connector {
+        position: absolute;
+        height: 30px;
+        width: 2px;
+        background: white;
+        top: -30px;
+      }
+
+      .controls {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin: 20px 0;
+      }
+
+      button {
+        background: #fdbb2d;
+        color: #1a2a6c;
+        border: none;
+        padding: 12px 25px;
+        border-radius: 50px;
+        font-size: 1rem;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      }
+
+      button:hover {
+        background: #ffcc44;
+        transform: translateY(-2px);
+      }
+
+      button:active {
+        transform: translateY(1px);
+      }
+
+      .call-stack {
+        background: #2c3e50;
+        border-radius: 8px;
+        padding: 15px;
+        margin-top: 20px;
+        min-height: 200px;
+      }
+
+      .stack-frame {
+        background: #34495e;
+        padding: 10px;
+        margin: 8px 0;
+        border-radius: 5px;
+        border-left: 4px solid #3498db;
+        transition: all 0.3s ease;
+      }
+
+      .stack-frame.active {
+        border-left: 4px solid #e74c3c;
+        background: #2c3e50;
+      }
+
+      .visualization-area {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 20px;
+      }
+
+      .function-call {
+        background: #9b59b6;
+        padding: 10px 20px;
+        border-radius: 8px;
+        margin: 10px 0;
+        font-weight: bold;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      }
+
+      .result {
+        font-size: 1.2rem;
+        font-weight: bold;
+        margin-top: 20px;
+        padding: 15px;
+        background: rgba(46, 204, 113, 0.2);
+        border-radius: 8px;
+        text-align: center;
+        min-height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .highlight {
+        color: #fdbb2d;
+        font-weight: bold;
+      }
+
+      .example-selector {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .example-btn {
+        background: #3498db;
+        margin: 0 5px;
+      }
+
+      .example-btn.active {
+        background: #fdbb2d;
+        color: #1a2a6c;
+      }
+
+      .count-display {
+        font-size: 4rem;
+        font-weight: bold;
+        text-align: center;
+        margin: 20px 0;
+        height: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+      }
+
+      .count-step {
+        font-size: 1.2rem;
+        margin: 10px 0;
+        padding: 10px;
+        background: rgba(52, 152, 219, 0.2);
+        border-radius: 8px;
+        text-align: center;
+      }
+
+      .output-sequence {
+        font-size: 1.5rem;
+        margin: 15px 0;
+        min-height: 40px;
+        text-align: center;
+        font-weight: bold;
+        color: #fdbb2d;
+      }
+
+      .comparison {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+        gap: 20px;
+      }
+
+      .comparison-box {
+        flex: 1;
+        background: rgba(255, 255, 255, 0.1);
+        padding: 15px;
+        border-radius: 8px;
+      }
+
+      @media (max-width: 768px) {
+        .comparison {
+          flex-direction: column;
+        }
+
+        .example-selector {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .example-btn {
+          width: 200px;
+          margin: 5px 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Visualizing Recursion in JavaScript</h1>
+
+    <div class="container">
+      <div class="example-selector">
+        <button class="example-btn active" id="factorialBtn">
+          Factorial Example
+        </button>
+        <button class="example-btn" id="countdownBtn">Countdown Example</button>
+        <button class="example-btn" id="countupBtn">CountUp Example</button>
+      </div>
+
+      <div class="explanation">
+        <p>
+          Recursion is when a function calls itself until it reaches a
+          <span class="highlight">base case</span> (a condition that stops the
+          recursion).
+        </p>
+        <p id="currentExplanation">
+          Let's visualize how the factorial function works:
+          <span class="highlight">factorial(n) = n * factorial(n-1)</span>
+        </p>
+      </div>
+
+      <h2 id="codeTitle">JavaScript Code</h2>
+      <div class="code-container">
+        <pre id="codeDisplay">
+function factorial(n) {
+    // Base case: if n is 0 or 1, return 1
+    if (n <= 1) {
+        return 1;
+    }
+    
+    // Recursive case: n * factorial of (n-1)
+    return n * factorial(n - 1);
+}</pre
+        >
+      </div>
+
+      <div id="countDisplay" class="count-display" style="display: none">
+        <div id="currentCount">5</div>
+        <div class="output-sequence" id="outputSequence"></div>
+      </div>
+
+      <h2>Interactive Visualization</h2>
+      <div class="controls">
+        <button id="stepBtn">Step Forward</button>
+        <button id="resetBtn">Reset</button>
+        <button id="autoBtn">Auto Run</button>
+      </div>
+
+      <div class="visualization-area">
+        <div class="recursion-tree" id="recursionTree">
+          <!-- Recursion tree will be generated here -->
+        </div>
+
+        <div class="call-stack">
+          <h3>Call Stack</h3>
+          <div id="stackContainer">
+            <!-- Call stack will be displayed here -->
+          </div>
+        </div>
+
+        <div class="result" id="result">
+          Click "Step Forward" to start visualization
+        </div>
+      </div>
+
+      <div class="comparison">
+        <div class="comparison-box">
+          <h3>Factorial</h3>
+          <p>
+            Returns a computed value by building up the result as the recursion
+            unwinds.
+          </p>
+          <p>
+            <span class="highlight">Key insight:</span> The multiplication
+            happens on the way back up the call stack.
+          </p>
+        </div>
+        <div class="comparison-box">
+          <h3>Countdown</h3>
+          <p>Performs an action (printing) before the recursive call.</p>
+          <p>
+            <span class="highlight">Key insight:</span> Actions happen on the
+            way down the recursion.
+          </p>
+        </div>
+        <div class="comparison-box">
+          <h3>CountUp</h3>
+          <p>Performs an action (printing) after the recursive call.</p>
+          <p>
+            <span class="highlight">Key insight:</span> Actions happen on the
+            way back up the recursion.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // State for the visualization
+      let currentStep = 0;
+      let currentExample = "factorial";
+      let isAutoRunning = false;
+      let autoInterval;
+      let outputSequence = [];
+
+      // DOM elements
+      const stepBtn = document.getElementById("stepBtn");
+      const resetBtn = document.getElementById("resetBtn");
+      const autoBtn = document.getElementById("autoBtn");
+      const factorialBtn = document.getElementById("factorialBtn");
+      const countdownBtn = document.getElementById("countdownBtn");
+      const countupBtn = document.getElementById("countupBtn");
+      const recursionTree = document.getElementById("recursionTree");
+      const stackContainer = document.getElementById("stackContainer");
+      const resultDiv = document.getElementById("result");
+      const codeDisplay = document.getElementById("codeDisplay");
+      const codeTitle = document.getElementById("codeTitle");
+      const currentExplanation = document.getElementById("currentExplanation");
+      const countDisplay = document.getElementById("countDisplay");
+      const currentCount = document.getElementById("currentCount");
+      const outputSequenceDiv = document.getElementById("outputSequence");
+
+      // Steps for factorial(5) visualization
+      const factorialSteps = [
+        { action: "Call factorial(5)", n: 5, stack: ["factorial(5)"] },
+        {
+          action: "Call factorial(4)",
+          n: 4,
+          stack: ["factorial(5)", "factorial(4)"],
+        },
+        {
+          action: "Call factorial(3)",
+          n: 3,
+          stack: ["factorial(5)", "factorial(4)", "factorial(3)"],
+        },
+        {
+          action: "Call factorial(2)",
+          n: 2,
+          stack: [
+            "factorial(5)",
+            "factorial(4)",
+            "factorial(3)",
+            "factorial(2)",
+          ],
+        },
+        {
+          action: "Call factorial(1)",
+          n: 1,
+          stack: [
+            "factorial(5)",
+            "factorial(4)",
+            "factorial(3)",
+            "factorial(2)",
+            "factorial(1)",
+          ],
+        },
+        {
+          action: "Base case reached! factorial(1) returns 1",
+          n: 1,
+          stack: [
+            "factorial(5)",
+            "factorial(4)",
+            "factorial(3)",
+            "factorial(2)",
+          ],
+          returning: true,
+          returnValue: 1,
+        },
+        {
+          action: "factorial(2) returns 2 * 1 = 2",
+          n: 2,
+          stack: ["factorial(5)", "factorial(4)", "factorial(3)"],
+          returning: true,
+          returnValue: 2,
+        },
+        {
+          action: "factorial(3) returns 3 * 2 = 6",
+          n: 3,
+          stack: ["factorial(5)", "factorial(4)"],
+          returning: true,
+          returnValue: 6,
+        },
+        {
+          action: "factorial(4) returns 4 * 6 = 24",
+          n: 4,
+          stack: ["factorial(5)"],
+          returning: true,
+          returnValue: 24,
+        },
+        {
+          action: "factorial(5) returns 5 * 24 = 120",
+          n: 5,
+          stack: [],
+          returning: true,
+          returnValue: 120,
+        },
+      ];
+
+      // Steps for countdown(5) visualization
+      const countdownSteps = [
+        {
+          action: "Call countdown(5)",
+          n: 5,
+          stack: ["countdown(5)"],
+          display: 5,
+        },
+        {
+          action: "Print: 5",
+          n: 5,
+          stack: ["countdown(5)"],
+          display: 5,
+          output: 5,
+        },
+        {
+          action: "Call countdown(4)",
+          n: 4,
+          stack: ["countdown(5)", "countdown(4)"],
+          display: 4,
+        },
+        {
+          action: "Print: 4",
+          n: 4,
+          stack: ["countdown(5)", "countdown(4)"],
+          display: 4,
+          output: 4,
+        },
+        {
+          action: "Call countdown(3)",
+          n: 3,
+          stack: ["countdown(5)", "countdown(4)", "countdown(3)"],
+          display: 3,
+        },
+        {
+          action: "Print: 3",
+          n: 3,
+          stack: ["countdown(5)", "countdown(4)", "countdown(3)"],
+          display: 3,
+          output: 3,
+        },
+        {
+          action: "Call countdown(2)",
+          n: 2,
+          stack: [
+            "countdown(5)",
+            "countdown(4)",
+            "countdown(3)",
+            "countdown(2)",
+          ],
+          display: 2,
+        },
+        {
+          action: "Print: 2",
+          n: 2,
+          stack: [
+            "countdown(5)",
+            "countdown(4)",
+            "countdown(3)",
+            "countdown(2)",
+          ],
+          display: 2,
+          output: 2,
+        },
+        {
+          action: "Call countdown(1)",
+          n: 1,
+          stack: [
+            "countdown(5)",
+            "countdown(4)",
+            "countdown(3)",
+            "countdown(2)",
+            "countdown(1)",
+          ],
+          display: 1,
+        },
+        {
+          action: "Print: 1",
+          n: 1,
+          stack: [
+            "countdown(5)",
+            "countdown(4)",
+            "countdown(3)",
+            "countdown(2)",
+            "countdown(1)",
+          ],
+          display: 1,
+          output: 1,
+        },
+        {
+          action: "Base case reached! countdown(1) returns",
+          n: 1,
+          stack: [
+            "countdown(5)",
+            "countdown(4)",
+            "countdown(3)",
+            "countdown(2)",
+          ],
+          returning: true,
+          display: 1,
+        },
+        {
+          action: "countdown(2) returns",
+          n: 2,
+          stack: ["countdown(5)", "countdown(4)", "countdown(3)"],
+          returning: true,
+          display: 2,
+        },
+        {
+          action: "countdown(3) returns",
+          n: 3,
+          stack: ["countdown(5)", "countdown(4)"],
+          returning: true,
+          display: 3,
+        },
+        {
+          action: "countdown(4) returns",
+          n: 4,
+          stack: ["countdown(5)"],
+          returning: true,
+          display: 4,
+        },
+        {
+          action: "countdown(5) returns",
+          n: 5,
+          stack: [],
+          returning: true,
+          display: 5,
+        },
+      ];
+
+      // Steps for countup(5) visualization
+      const countupSteps = [
+        { action: "Call countup(5)", n: 5, stack: ["countup(5)"], display: 5 },
+        {
+          action: "Call countup(4)",
+          n: 4,
+          stack: ["countup(5)", "countup(4)"],
+          display: 4,
+        },
+        {
+          action: "Call countup(3)",
+          n: 3,
+          stack: ["countup(5)", "countup(4)", "countup(3)"],
+          display: 3,
+        },
+        {
+          action: "Call countup(2)",
+          n: 2,
+          stack: ["countup(5)", "countup(4)", "countup(3)", "countup(2)"],
+          display: 2,
+        },
+        {
+          action: "Call countup(1)",
+          n: 1,
+          stack: [
+            "countup(5)",
+            "countup(4)",
+            "countup(3)",
+            "countup(2)",
+            "countup(1)",
+          ],
+          display: 1,
+        },
+        {
+          action: "Base case reached! countup(1) returns",
+          n: 1,
+          stack: ["countup(5)", "countup(4)", "countup(3)", "countup(2)"],
+          returning: true,
+          display: 1,
+        },
+        {
+          action: "Print: 1",
+          n: 1,
+          stack: ["countup(5)", "countup(4)", "countup(3)", "countup(2)"],
+          display: 1,
+          output: 1,
+        },
+        {
+          action: "countup(2) returns",
+          n: 2,
+          stack: ["countup(5)", "countup(4)", "countup(3)"],
+          returning: true,
+          display: 2,
+        },
+        {
+          action: "Print: 2",
+          n: 2,
+          stack: ["countup(5)", "countup(4)", "countup(3)"],
+          display: 2,
+          output: 2,
+        },
+        {
+          action: "countup(3) returns",
+          n: 3,
+          stack: ["countup(5)", "countup(4)"],
+          returning: true,
+          display: 3,
+        },
+        {
+          action: "Print: 3",
+          n: 3,
+          stack: ["countup(5)", "countup(4)"],
+          display: 3,
+          output: 3,
+        },
+        {
+          action: "countup(4) returns",
+          n: 4,
+          stack: ["countup(5)"],
+          returning: true,
+          display: 4,
+        },
+        {
+          action: "Print: 4",
+          n: 4,
+          stack: ["countup(5)"],
+          display: 4,
+          output: 4,
+        },
+        {
+          action: "countup(5) returns",
+          n: 5,
+          stack: [],
+          returning: true,
+          display: 5,
+        },
+        { action: "Print: 5", n: 5, stack: [], display: 5, output: 5 },
+      ];
+
+      // Initialize the visualization
+      function initVisualization() {
+        currentStep = 0;
+        outputSequence = [];
+        updateOutputSequence();
+        updateVisualization();
+      }
+
+      // Update the visualization based on current step
+      function updateVisualization() {
+        const steps = getCurrentSteps();
+
+        if (currentStep >= steps.length) {
+          if (currentExample === "factorial") {
+            resultDiv.textContent = `Final Result: factorial(5) = 120`;
+          } else if (currentExample === "countdown") {
+            resultDiv.textContent = `Countdown completed!`;
+          } else {
+            resultDiv.textContent = `Countup completed!`;
+          }
+          return;
+        }
+
+        const step = steps[currentStep];
+
+        // Update the recursion tree
+        updateRecursionTree(step);
+
+        // Update the call stack
+        updateCallStack(step);
+
+        // Update the result display
+        resultDiv.textContent = step.action;
+
+        // Update count display if applicable
+        if (currentExample !== "factorial" && step.display !== undefined) {
+          currentCount.textContent = step.display;
+        }
+
+        // Update output sequence if applicable
+        if (step.output !== undefined) {
+          outputSequence.push(step.output);
+          updateOutputSequence();
+        }
+      }
+
+      // Get the steps for the current example
+      function getCurrentSteps() {
+        switch (currentExample) {
+          case "factorial":
+            return factorialSteps;
+          case "countdown":
+            return countdownSteps;
+          case "countup":
+            return countupSteps;
+          default:
+            return factorialSteps;
+        }
+      }
+
+      // Update the recursion tree visualization
+      function updateRecursionTree(step) {
+        recursionTree.innerHTML = "";
+
+        const maxN = 5;
+        const funcName = getFunctionName();
+
+        // Create nodes for each level of recursion
+        for (let i = maxN; i >= 1; i--) {
+          const level = document.createElement("div");
+          level.className = "level";
+
+          // Add connector line if not the first level
+          if (i < maxN) {
+            const connector = document.createElement("div");
+            connector.className = "connector";
+            level.appendChild(connector);
+          }
+
+          const node = document.createElement("div");
+          node.className = "node";
+          node.textContent = `${funcName}(${i})`;
+
+          // Highlight the current node if it matches the step
+          if (i === step.n) {
+            node.classList.add(step.returning ? "returning" : "active");
+          }
+
+          level.appendChild(node);
+          recursionTree.appendChild(level);
+        }
+      }
+
+      // Get the function name for the current example
+      function getFunctionName() {
+        switch (currentExample) {
+          case "factorial":
+            return "factorial";
+          case "countdown":
+            return "countdown";
+          case "countup":
+            return "countup";
+          default:
+            return "factorial";
+        }
+      }
+
+      // Update the call stack visualization
+      function updateCallStack(step) {
+        stackContainer.innerHTML = "";
+        const funcName = getFunctionName();
+
+        // Add stack frames in reverse order (top of stack first)
+        for (let i = step.stack.length - 1; i >= 0; i--) {
+          const frame = document.createElement("div");
+          frame.className = "stack-frame";
+
+          // Highlight the active frame (top of stack)
+          if (i === step.stack.length - 1) {
+            frame.classList.add("active");
+          }
+
+          frame.textContent = step.stack[i];
+          stackContainer.appendChild(frame);
+        }
+      }
+
+      // Update the output sequence display
+      function updateOutputSequence() {
+        if (outputSequence.length === 0) {
+          outputSequenceDiv.textContent = "";
+        } else {
+          outputSequenceDiv.textContent =
+            "Output: " + outputSequence.join(" → ");
+        }
+      }
+
+      // Switch between examples
+      function switchExample(example) {
+        currentExample = example;
+
+        // Update UI based on selected example
+        if (example === "factorial") {
+          factorialBtn.classList.add("active");
+          countdownBtn.classList.remove("active");
+          countupBtn.classList.remove("active");
+          codeDisplay.textContent = `function factorial(n) {
+    // Base case: if n is 0 or 1, return 1
+    if (n <= 1) {
+        return 1;
+    }
+    
+    // Recursive case: n * factorial of (n-1)
+    return n * factorial(n - 1);
+}`;
+          currentExplanation.innerHTML = `Let's visualize how the factorial function works: <span class="highlight">factorial(n) = n * factorial(n-1)</span>`;
+          countDisplay.style.display = "none";
+        } else if (example === "countdown") {
+          factorialBtn.classList.remove("active");
+          countdownBtn.classList.add("active");
+          countupBtn.classList.remove("active");
+          codeDisplay.textContent = `function countdown(n) {
+    // Base case: if n is 0, stop recursion
+    if (n === 0) {
+        return;
+    }
+    
+    // Print the current number
+    console.log(n);
+    
+    // Recursive case: call countdown with n-1
+    countdown(n - 1);
+}`;
+          currentExplanation.innerHTML = `Let's visualize how the countdown function works: <span class="highlight">It prints numbers from n down to 1</span>`;
+          countDisplay.style.display = "flex";
+        } else {
+          factorialBtn.classList.remove("active");
+          countdownBtn.classList.remove("active");
+          countupBtn.classList.add("active");
+          codeDisplay.textContent = `function countup(n) {
+    // Base case: if n is 0, stop recursion
+    if (n === 0) {
+        return;
+    }
+    
+    // Recursive case: call countup with n-1 first
+    countup(n - 1);
+    
+    // Then print the current number
+    console.log(n);
+}`;
+          currentExplanation.innerHTML = `Let's visualize how the countup function works: <span class="highlight">It prints numbers from 1 up to n</span>`;
+          countDisplay.style.display = "flex";
+        }
+
+        initVisualization();
+      }
+
+      // Move to the next step
+      function nextStep() {
+        const steps = getCurrentSteps();
+
+        if (currentStep < steps.length) {
+          currentStep++;
+          updateVisualization();
+        }
+
+        if (currentStep === steps.length && isAutoRunning) {
+          clearInterval(autoInterval);
+          isAutoRunning = false;
+          autoBtn.textContent = "Auto Run";
+        }
+      }
+
+      // Reset the visualization
+      function reset() {
+        if (isAutoRunning) {
+          clearInterval(autoInterval);
+          isAutoRunning = false;
+          autoBtn.textContent = "Auto Run";
+        }
+        initVisualization();
+      }
+
+      // Toggle auto-run
+      function toggleAutoRun() {
+        if (isAutoRunning) {
+          clearInterval(autoInterval);
+          isAutoRunning = false;
+          autoBtn.textContent = "Auto Run";
+        } else {
+          isAutoRunning = true;
+          autoBtn.textContent = "Stop";
+          autoInterval = setInterval(nextStep, 1500);
+        }
+      }
+
+      // Event listeners
+      stepBtn.addEventListener("click", nextStep);
+      resetBtn.addEventListener("click", reset);
+      autoBtn.addEventListener("click", toggleAutoRun);
+      factorialBtn.addEventListener("click", () => switchExample("factorial"));
+      countdownBtn.addEventListener("click", () => switchExample("countdown"));
+      countupBtn.addEventListener("click", () => switchExample("countup"));
+
+      // Initialize the visualization
+      initVisualization();
+    </script>
+  </body>
+</html>
