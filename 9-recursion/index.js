@@ -178,3 +178,10 @@ function isEven(n) {
 console.log(isEven(4)); // true
 console.log(isEven(7)); // false
 console.log(isEven(0)); // true
+
+function sumDigits(n) {
+  // Your code here
+}
+
+console.log(sumDigits(123)); // 6 (1+2+3)
+console.log(sumDigits(456)); // 15 (4+5+6)

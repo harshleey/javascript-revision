@@ -1,0 +1,46 @@
+2. Fibonacci Sequence
+Each number is the sum of the two preceding ones.
+
+javascript
+function fibonacci(n) {
+    // Base Cases
+    if (n === 0) return 0;
+    if (n === 1) return 1;
+    
+    // Recursive Case
+    return fibonacci(n - 1) + fibonacci(n - 2);
+}
+
+console.log(fibonacci(6)); // 8 (0, 1, 1, 2, 3, 5, 8)
+3. Sum of Array Elements
+javascript
+function sumArray(arr) {
+    // Base Case - empty array
+    if (arr.length === 0) {
+        return 0;
+    }
+    
+    // Recursive Case - first element + sum of rest of array
+    return arr[0] + sumArray(arr.slice(1));
+}
+
+console.log(sumArray([1, 2, 3, 4, 5])); // 15
+Visualizing Recursion with a Tree
+Let's visualize sumArray([1, 2, 3]):
+
+text
+sumArray([1, 2, 3])
+    ↓
+1 + sumArray([2, 3])
+        ↓
+    2 + sumArray([3])
+            ↓
+        3 + sumArray([])
+                ↓
+            0 (base case)
+        
+        = 3 + 0 = 3
+    
+    = 2 + 3 = 5
+
+= 1 + 5 = 6
